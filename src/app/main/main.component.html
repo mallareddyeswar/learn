@@ -1,0 +1,83 @@
+
+<body class="vertical-layout vertical-menu-modern 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+
+    <!-- BEGIN: Header-->
+    <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
+        <div class="navbar-wrapper">
+          <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+              <li class="nav-item mobile-menu d-lg-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+              <li class="nav-item mr-auto"><a class="navbar-brand" href="/main"><img class="brand-logo" alt="modern admin logo" src="assets/images/header-logo.png">
+                 </a></li>
+
+              <li class="nav-item d-lg-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a></li>
+            </ul>
+          </div>
+          <div class="navbar-container content">
+            <div class="collapse navbar-collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav mr-auto float-left">
+             </ul>
+              <ul class="nav navbar-nav float-right">
+
+               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">Admin</span><span class="avatar avatar-online"><img src="assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span></a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="login-with-bg-image.html"><i class="ft-power"></i> Add New User</a>
+                   <a class="dropdown-item" href="login-with-bg-image.html"><i class="ft-power"></i> Logout</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- END: Header-->
+      <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+        <div class="main-menu-content">
+          <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item"><a><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Schools</span></a>
+              <ul class="menu-content">
+                <li><a class="menu-item" routerLink="/main/add_school" routerLinkActive="active"><i></i><span data-i18n="Project Summary">Add School</span></a>
+                </li>
+                <li><a class="menu-item" routerLink="/main" routerLinkActive="active"><i></i><span data-i18n="Project Task">School List</span></a>
+                </li>
+
+              </ul>
+            </li>
+            <li class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Students</span></a>
+              <ul class="menu-content">
+                <li><a class="menu-item" routerLink="/main/add_student" routerLinkActive="active"><i></i><span data-i18n="Project Summary">Add Student</span></a>
+                </li>
+                <li><a class="menu-item" routerLink="/main/list_student" routerLinkActive="active"><i></i><span data-i18n="Project Task">Student List</span></a>
+                </li>
+
+
+              </ul>
+            </li>
+            <li class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Employee</span></a>
+              <ul class="menu-content">
+                <li><a class="menu-item" routerLink="/main/add_employee" routerLinkActive="active"><i></i><span data-i18n="Project Summary">Add Employee </span></a>
+                </li>
+                <li><a class="menu-item" routerLink="/main/list_employee" routerLinkActive="active"><i></i><span data-i18n="Project Task">Employee List</span></a>
+                </li>
+              </ul>
+            </li>
+            <li class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Admin</span></a>
+              <ul class="menu-content">
+                <li><a class="menu-item" routerLink="/main/add_admin" routerLinkActive="active"><i></i><span data-i18n="Project Summary">Add Admin </span></a>
+                </li>
+                <li><a class="menu-item" routerLink="/main/list_admin" routerLinkActive="active"><i></i><span data-i18n="Project Task"> List Admin</span></a>
+                </li>
+              </ul>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+<router-outlet></router-outlet>
+<footer class="footer footer-static footer-light navbar-border navbar-shadow">
+    <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2019 <a class="text-bold-800 grey darken-2" href="#" target="_blank">Akshar</a></span><span class="float-md-right d-none d-lg-block">Hand-crafted & Made with<i class="ft-heart pink"></i><span id="scroll-top"></span></span></p>
+  </footer>
+
+   <!-- END: Page JS-->
+</body>
