@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-employee',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
+ 
+
 
   constructor() { }
 
   ngOnInit() {
+
   }
+
+
 
 }

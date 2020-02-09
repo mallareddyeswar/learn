@@ -1,3 +1,4 @@
+import { StudentComponent } from './student/student.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
@@ -9,6 +10,7 @@ import { AddEmployeeComponent } from './employee/add-employee/add-employee.compo
 import { ListEmployeeComponent } from './employee/list-employee/list-employee.component';
 import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 import { ListAdminComponent } from './admin/list-admin/list-admin.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 
 const routes: Routes = [
@@ -39,7 +41,14 @@ const routes: Routes = [
       {
         path: 'list_employee',
         component: ListEmployeeComponent
+
       },
+      // {
+      //   path: 'list_employee_fillter',
+      //   component: ListEmployeeComponent
+
+      // },
+
       {
         path: 'add_admin',
         component: AddAdminComponent

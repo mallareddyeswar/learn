@@ -16,75 +16,105 @@
       </div>
       <div class="card-content collapse show">
         <div class="card-body">
-        <!-- <form class="form"> -->
+        <form class="form" [formGroup]="studentForm" (ngSubmit)="onSubmit()">
             <div class="form-body">
 
               <div class="form-group">
                 <label for="complaintinput1">Admission Number</label>
-                <input type="text" id="complaintinput1" class="form-control round" placeholder="Enter Admission Number" name="companyname">
+                <input type="text" id="complaintinput1" class="form-control round" placeholder="Enter Admission Number" formControlName="admissionNumber">
               </div>
 
               <div class="form-group">
                 <label for="complaintinput2">Student Name</label>
-                <input type="text" id="complaintinput2" class="form-control round" placeholder="Enter Student Name" name="employeename">
+                <input type="text" id="complaintinput2" class="form-control round" placeholder="Enter Student Name" formControlName="studentName">
               </div>
-              <div class="form-group">
-                <label for="complaintinput2">Student Photo</label>
-                <input type="file" id="complaintinput2" class="form-control round" >
-              </div>
+              <!-- <div class="form-group">
+                <label for="complaintinput3">Student Photo</label>
+                <input type="file" id="complaintinput3" class="form-control round" >
+              </div> -->
+              <fieldset class="form-group">
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Example file input</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" formControlName="photoLocation" (change)="handleFileInput($event)">
+                </div>
+                <!-- <div class="custom-file">
 
+                    <input type="file" class="custom-file-input" id="inputGroupFile02" formControlName="photoLocation">
+                    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFile02">Upload Profile Image</label>
+                </div> -->
+            </fieldset>
               <div class="form-group">
-                <label for="issueinput6">Class</label>
-                <select id="issueinput6" name="status" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                <label for="issueinput4">Class</label>
+                <select id="issueinput4" formControlName="classroom" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
                   <option disabled>Enter Class</option>
-                  <option value="started">1</option>
-                  <option value="fixed">2</option>
-                  <option value="fixed">3</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
                 </select>
               </div>
 
 
               <div class="form-group">
-                <label for="issueinput6">Section</label>
-                <select id="issueinput6" name="status" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                <label for="issueinput5">Section</label>
+                <select id="issueinput5" formControlName="section" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
                   <option disabled>Enter Section</option>
-                  <option value="started">A</option>
-                  <option value="fixed">B</option>
-                  <option value="fixed">C</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label for="complaintinput2">Parent Guardian Name</label>
-                <input type="text" id="complaintinput2" class="form-control round" placeholder="Enter Guardian Name" name="employeename">
+                <label for="issueinput5">School Code</label>
+                <select #school (change)="onSelect(school.value)"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+
+                  <option  *ngFor="let school of schools" [value]="school.schoolCd">{{school.schoolCd}}</option>
+
+                </select>
+              </div>
+              <!-- <div class="form-group">
+                <label for="complaintinput6">School Code</label>
+                <input type="text" id="complaintinput6" class="form-control round" placeholder="Enter Guardian Name" formControlName="schoolCd">
+              </div> -->
+              <div class="form-group">
+                <label for="complaintinput6">Phone Number</label>
+                <input type="text" id="complaintinput6" class="form-control round" placeholder="Enter Guardian Name" formControlName="phoneNumber">
+              </div>
+              <div class="form-group">
+                <label for="issueinput7">Gender</label>
+                <select id="issueinput7" placeholder="Status" formControlName="gender" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+
+                </select>
               </div>
 
-
               <div class="form-group">
-                <label for="issueinput6">Blood Group</label>
-                <select id="issueinput6" name="status" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                <label for="issueinput7">Blood Group</label>
+                <select id="issueinput7" formControlName="bloodGroup" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
                   <option disabled>Enter Blood Group</option>
-                  <option value="started">o+</option>
-                  <option value="fixed">A+</option>
-                  <option value="fixed">B+</option>
+                  <option value="0+">o+</option>
+                  <option value="A+">A+</option>
+                  <option value="B+">B+</option>
                 </select>
               </div>
+
               <div class="form-group">
-                <label for="complaintinput2"> Phone Number</label>
-                <input type="text" id="complaintinput2" class="form-control round" placeholder="Enter Phone Number" name="employeename">
+                <label for="complaintinput8"> Aadhar Number</label>
+                <input type="text" id="complaintinput8" class="form-control round" placeholder="Enter Aadhar Number" formControlName="aadharNbr">
               </div>
               <div class="form-group">
-                <label for="complaintinput2"> Aadhar Number</label>
-                <input type="text" id="complaintinput2" class="form-control round" placeholder="Enter Aadhar Number" name="employeename">
+                <label for="issueinput7">ID Status</label>
+                <select id="issueinput7" placeholder="Status" formControlName="idCardStatus" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+
+
+                  <option value="pending">Pending</option>
+
+                </select>
               </div>
-              <div class="form-group">
-                <label for="complaintinput2"> House Name</label>
-                <input type="text" id="complaintinput2" class="form-control round" placeholder="Enter House Name" name="employeename">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput2"> Address</label>
-                <textarea id="issueinput8" rows="5" class="form-control" name="comments" placeholder="Enter Address" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title=""></textarea>
-              </div>
+
+
 
             </div>
 
@@ -94,7 +124,7 @@
                 Submit
               </button>
             </div>
-          <!-- </form> -->
+          </form>
         </div>
       </div>
     </div>

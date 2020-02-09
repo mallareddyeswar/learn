@@ -1,5 +1,6 @@
 import { ApiService } from './../../../api.service';
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -16,16 +17,37 @@ export class ListEmployeeComponent implements OnInit {
 //     {"id":4,"name":"Refined Concrete Chair","description":"Saepe nemo praesentium","price":"760.00","quantity":5899}
 // ];
   employees: any;
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService , private router: Router) { }
 
   ngOnInit() {
-    this.apiService.getEmployees().subscribe(
-      data => {
-       this.employees = data;
-       console.log( this.employees );
+    // this.apiService.getEmployees().subscribe(
+    //   data => {
+    //    this.employees = data;
+    //    console.log( this.employees );
+    //   },
+    //   error => console.log(error)
+    // );
+  }
+
+  onSearch(data) {
+    // console.log(data);
+
+    this.apiService.postEmployeeSearch(data).subscribe(res => {
+      // console.log('employee', res);
+      this.employees = res;
       },
       error => console.log(error)
-    );
-  }
+      );
+
+    // this.hc.get(`http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/schoolCd/${data}`).subscribe(res =>{
+    //   console.log('employee',res);
+
+    //   alert('Search Done!');
+
+    //   this.router.navigate(['/main/list_employee_fillter']);
+    // });
+
+
+      }
 
 }
