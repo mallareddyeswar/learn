@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { loadavg } from 'os';
+
 
 @Component({
   selector: 'app-main',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  navigate: any;
+  constructor(private router: Router ) {
 
-  constructor() { }
+   }
 
   ngOnInit() {
+
+
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
+  }
+
 
 }

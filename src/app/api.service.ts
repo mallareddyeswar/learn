@@ -15,7 +15,7 @@ export class ApiService {
  // tslint:disable-next-line: max-line-length
  'Access-Control-Allow-Headers, Authorization, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
 
- Authorization: 'bd154e74b14786d58d67641a096903e9'
+ Authorization: localStorage.getItem('token')
  });
  constructor(private httpClient: HttpClient) {}
 
@@ -23,11 +23,11 @@ export class ApiService {
 
 
 
- 
 
 
 
- //Auth Api End
+
+ // Auth Api End
 
 
 
@@ -75,6 +75,16 @@ public postEmployeeSearch(data: any) {
  { headers: this.headers }
  );
  }
+ public deleteSchool(schoolId): Observable<object> {
+  console.log(schoolId);
+  // tslint:disable-next-line: max-line-length
+  return this.httpClient.delete(
+
+  `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/SchoolProfile/${schoolId}`,
+
+  {headers: this.headers}
+  );
+  }
  public postSchool(school: any) {
  // tslint:disable-next-line: max-line-length
  return this.httpClient.post(
@@ -99,10 +109,10 @@ public postEmployeeSearch(data: any) {
  { headers: this.headers }
  );
  }
- public postStudentstatus(studentProfileId: number) {
+ public postStudentstatus(studentProfileId: any) {
   // tslint:disable-next-line: max-line-length
   return this.httpClient.post(
-  'http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/',
+  `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/${studentProfileId}`,
   studentProfileId,
   { headers: this.headers}
   );

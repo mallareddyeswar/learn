@@ -21,8 +21,8 @@
 
                <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">Admin</span><span class="avatar avatar-online"><img src="assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span></a>
                   <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="login-with-bg-image.html"><i class="ft-power"></i> Add New User</a>
-                   <a class="dropdown-item" href="login-with-bg-image.html"><i class="ft-power"></i> Logout</a>
+                    <!-- <a class="dropdown-item"  href="login-with-bg-image.html"><i class="ft-power"></i> Add New User</a> -->
+                   <a class="dropdown-item" (click)="logout()" [routerLink]="['/logout']"><i class="ft-power"></i> Logout</a>
                   </div>
                 </li>
               </ul>
@@ -61,14 +61,14 @@
                 </li>
               </ul>
             </li>
-            <li class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Admin</span></a>
+            <!-- <li class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Admin</span></a>
               <ul class="menu-content">
                 <li><a class="menu-item" routerLink="/main/add_admin" routerLinkActive="active"><i></i><span data-i18n="Project Summary">Add Admin </span></a>
                 </li>
                 <li><a class="menu-item" routerLink="/main/list_admin" routerLinkActive="active"><i></i><span data-i18n="Project Task"> List Admin</span></a>
                 </li>
               </ul>
-            </li>
+            </li> -->
 
 
           </ul>

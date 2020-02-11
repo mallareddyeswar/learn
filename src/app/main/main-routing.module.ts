@@ -11,12 +11,14 @@ import { ListEmployeeComponent } from './employee/list-employee/list-employee.co
 import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 import { ListAdminComponent } from './admin/list-admin/list-admin.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { AuthGuard } from './../auth.guard';
 
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

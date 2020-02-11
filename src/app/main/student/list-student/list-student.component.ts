@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../../api.service';
 import {Router} from '@angular/router';
+import {ExcelService} from './../../../excel.service';
+
 
 @Component({
   selector: 'app-list-student',
@@ -9,23 +11,33 @@ import {Router} from '@angular/router';
 })
 export class ListStudentComponent implements OnInit {
   students: any;
-  constructor(private apiService: ApiService , private router: Router) { }
+  constructor(private apiService: ApiService , private router: Router, private excelservice: ExcelService) { }
 
   ngOnInit() {
-   
-  }
-  
 
-onPrint(data) {
-  
-  console.log("the selected value is " + data);
-  
+  }
+
+
+onPrint(data, student) {
+
+
+  student.studentProfileId = data;
+  console.log(student);
+//   this.apiService.postStudentstatus(student).subscribe(res=>{
+//    alert("Student ID Card Updated");
+
+
+//  });
+
+
+
 }
 
-viewDetails(id){
-  this.apiService.postStudentstatus(id).subscribe();
-    
 
+
+
+downloadExcel(): void {
+  this.excelservice.exportAsExcelFile(this.students, 'Student_list');
 }
 
   onSearch(data) {
@@ -36,6 +48,6 @@ viewDetails(id){
       this.students = res;
     });
   }
- 
+
 }
 
