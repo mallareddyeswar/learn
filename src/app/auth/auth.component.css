@@ -1,12 +1,39 @@
+
+
+.login_bg{
+  top: 201px;
+    position: relative;
+}
+.login_card{
+  border-radius: 10px;
+  padding:40px;
+  background-color: #3303d3;
+}
+
+form .form-control {
+  border: 3px solid #0e30b1;
+  color: #3b4781;
+}
+.btn-primary {
+  color: #fff;
+  font-weight: 600;
+  border-radius: 40px;
+  background-color: #68ecb0 !important;
+  border-color: #68ecb0 !important;
+}
+.logo_img{
+  position: relative;
+    left: 78px;
+    top: 162px;
+}
+
+
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
 }
 
-body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
-}
+
 
 .card-signin {
   border: 0;

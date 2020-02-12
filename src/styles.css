@@ -2,3 +2,32 @@
     color: red;
 }
 
+html body {
+  height: 100%;
+  background-color: #f4f5fa;
+  direction: ltr;
+}
+.notify_message{
+  position: absolute;
+  right: 12px;
+  top: 50px;
+  width: 500px;
+}
+.card-header:first-child {
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  background-color: #0b3960;
+}
+.table .thead-dark th {
+  color: #fff;
+  background-color: #0e3e66;
+  /* border-color: #454d55; */
+}
+.table-bordered td, .table-bordered th {
+  border: 1px solid #fff;
+}
+.card-header .card-title {
+  margin-bottom: 0;
+  font-weight: 600 !important;
+  color: #fff !important;
+}
+

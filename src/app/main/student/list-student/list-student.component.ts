@@ -41,7 +41,7 @@ downloadExcel(): void {
 }
 
   onSearch(data) {
-    // console.log(data);
+    console.log(data);
 
     this.apiService.postStudentSearch(data).subscribe(res => {
       // console.log('employee', res);
