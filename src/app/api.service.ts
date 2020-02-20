@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
+import { Observable, throwError, pipe } from 'rxjs';
+import {catchError, retry} from 'rxjs/operators';
 
 @Injectable({
  providedIn: 'root'
@@ -18,25 +20,17 @@ export class ApiService {
  Authorization: localStorage.getItem('token')
  });
  constructor(private httpClient: HttpClient) {}
+ schoolError: any ;
 
- // Auth Api Start
-
-
-
-
-
-
-
- // Auth Api End
 
 
 
  public postStudentSearch(studentdata: any) {
-  console.log(studentdata.search);
+  console.log(studentdata);
 
   // tslint:disable-next-line: max-line-length
   return this.httpClient.get(
-    `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/schoolCd/${studentdata.search}`,
+    `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/schoolCd/${studentdata}`,
 
   { headers: this.headers}
   );
@@ -54,7 +48,7 @@ public postEmployeeSearch(data: any) {
   // tslint:disable-next-line: max-line-length
   return this.httpClient.get(
 
-    `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/schoolCd/${data.search}`,
+    `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/schoolCd/${data}`,
 
   { headers: this.headers}
   );
@@ -68,13 +62,55 @@ public postEmployeeSearch(data: any) {
   { headers: this.headers}
   );
   }
+  // GET School Service
  public getSchool(): Observable<object> {
  // tslint:disable-next-line: max-line-length
  return this.httpClient.get(
- 'http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/SchoolProfile',
+ 'http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/SchoolProfile/',
+
  { headers: this.headers }
+
  );
+
  }
+
+
+// End GET School Service
+
+// Update School Service
+
+public updateSchool(data: any): Observable<object>  {
+  // tslint:disable-next-line: max-line-length
+  return this.httpClient.put(
+  'http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/SchoolProfile',
+  data,
+  { headers: this.headers}
+  );
+  }
+
+
+
+public updateStudent(student: any): Observable<object>  {
+  // tslint:disable-next-line: max-line-length
+  return this.httpClient.put(
+  'http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/',
+  student,
+  { headers: this.headers}
+  );
+  }
+
+
+  public updateEmpolyee(empolyee: any): Observable<object>  {
+    // tslint:disable-next-line: max-line-length
+    return this.httpClient.put(
+    'http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/',
+    empolyee,
+    { headers: this.headers}
+    );
+    }
+
+// End Update School Service
+
  public deleteSchool(schoolId): Observable<object> {
   console.log(schoolId);
   // tslint:disable-next-line: max-line-length
@@ -85,13 +121,43 @@ public postEmployeeSearch(data: any) {
   {headers: this.headers}
   );
   }
+
+  public deleteEmployee(employeeProfileId): Observable<object> {
+    console.log(employeeProfileId);
+    // tslint:disable-next-line: max-line-length
+    return this.httpClient.delete(
+
+    `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/${employeeProfileId}`,
+
+    {headers: this.headers}
+    );
+    }
+
+
+
+    public deleteStudent(studentProfileId): Observable<object> {
+      console.log(studentProfileId);
+      // tslint:disable-next-line: max-line-length
+      return this.httpClient.delete(
+
+      `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/${studentProfileId}`,
+
+      {headers: this.headers}
+      );
+      }
+
+
+
  public postSchool(school: any) {
+  // console.log(school,'school Service Erro');
  // tslint:disable-next-line: max-line-length
  return this.httpClient.post(
  'http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/SchoolProfile/',
  school,
+ 
  { headers: this.headers}
  );
+ 
  }
 
 //  public getEmployees(): Observable<object> {
@@ -109,11 +175,12 @@ public postEmployeeSearch(data: any) {
  { headers: this.headers }
  );
  }
- public postStudentstatus(studentProfileId: any) {
+ public postStudentstatus(student: any) {
   // tslint:disable-next-line: max-line-length
-  return this.httpClient.post(
-  `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/${studentProfileId}`,
-  studentProfileId,
+  console.log(student,'service error');
+  return this.httpClient.put(
+  `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/updateList`,
+  student,
   { headers: this.headers}
   );
   }

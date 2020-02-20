@@ -1,56 +1,97 @@
+
+
 <div class="app-content content">
-    <div class="content-overlay"></div>
-    <div class="content-wrapper">
-      <div class="content-header row">
-      </div>
-      <div class="content-body"><!-- Zero configuration table -->
-       <!-- Scroll - vertical, dynamic height table -->
-        <section id="scroll-dynamic">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">List Of School</h4>
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
 
-                        </div>
-                        <div class="card-content collapse show">
-                            <div class="card-body card-dashboard" style="padding: 0px;">
-                              <table class="table  table-striped table-bordered dynamic-height dataTable" id="DataTables_Table_7">
-                                <thead class="thead-dark">
-                                  <tr>
-                                    <th scope="col">Select</th>
-                                    <th scope="col">School Code</th>
-                                    <th scope="col">School Name</th>
-                                    <th scope="col">Education Board</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Registration Number</th>
-                                    <th scope="col">Contact Person</th>
-                                    <th scope="col">Phone Number</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Edit</th>
-                                    <th scope="col">Delete</th>
+    <div class="content-body">
+      <!-- Zero configuration table -->
+      <!-- Scroll - vertical, dynamic height table -->
+      <section id="scroll-dynamic">
+        <div class="row">
+          <div class="container"></div>
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">List Of School</h4>
+              </div>
+              <div class="notify_message"></div>
+              <div class="card-content collapse show">
+                <div class="card-body card-dashboard table-responsive" style="padding: 0px;max-height: 800px;">
+                  <table
+                    class="table  table-striped table-bordered dynamic-height dataTable"
+                    id="DataTables_Table_7"
+                  >
+                    <thead class="thead-dark">
+                      <tr>
 
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr *ngFor="let school of schools" role="row" class="odd">
-                                    <td class="sorting_1"><input type="checkbox" value=""></td>
-                                    <td class="sorting_1">{{school.schoolCd}}</td>
-                                          <td class="sorting_1">{{school.schoolName}}</td>
-                                          <td class="sorting_1">{{school.educationBoard}}</td>
-                                          <td class="sorting_1">{{school.address}}</td>
-                                          <td class="sorting_1">{{school.registrationNumber}}</td>
-                                          <td class="sorting_1">{{school.contactPersonName}}</td>
-                                          <td class="sorting_1">{{school.phoneNumber}}</td>
-                                          <td class="sorting_1">{{school.emailId}}</td>
-                                          <td> <a  class="dropdown-item" ><i class="la a la-pen"></i> </a></td>
-                                          <td> <a  class="dropdown-item delete" (click)="deleteSchool(school)"><i class="la a la-archive"></i> </a></td>
+                        <th scope="col">School Code</th>
+                        <th scope="col">School Name</th>
+                        <th scope="col">Education Board</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Registration Number</th>
+                        <th scope="col">Contact Person</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">View</th>
+                      </tr>
+                    </thead>
 
-                                      </tr>
+                    <tbody>
+                      <tr *ngFor="let school of schools" role="row" class="odd">
 
-                                </tbody>
-                              </table>
-                       <!-- <div class="table-responsive">
+                        <td class="sorting_1">{{ school.schoolCd }}</td>
+                        <td class="sorting_1">{{ school.schoolName }}</td>
+                        <td class="sorting_1">{{ school.educationBoard }}</td>
+                        <td class="sorting_1">{{ school.address }}</td>
+                        <td class="sorting_1">
+                          {{ school.registrationNumber }}
+                        </td>
+                        <td class="sorting_1">
+                          {{ school.contactPersonName }}
+                        </td>
+                        <td class="sorting_1">{{ school.phoneNumber }}</td>
+                        <td class="sorting_1">{{ school.emailId }}</td>
+                        <td>
+                          <a
+                            class="dropdown-item"
+                            (click)="editSchool(school)"
+                            data-toggle="modal"
+                            data-target="#myModal"
+                            ><i class="la a la-pen"></i>
+                          </a>
+                        </td>
+                        <td>
+                          <a
+                            class="dropdown-item delete"
+                            (click)="deleteSchool(school)"
+                            ><i class="la a la-archive"></i>
+                          </a>
+                        </td>
+                        <td>
+                          <button class="btn btn-primary btn-min-width mr-1 mb-1"  (click)="selectSchool(school)" >View Page</button>
+                          <!-- (click)="selectSchool(school)" -->
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div *ngIf="errorShow">
+                    <div class="container">
+                      <br />
+                      <div
+                        class="alert alert-warning alert-dismissible fade show"
+                        role="alert"
+                      >
+                        <span style="text-align: center;">
+                          No Data Found</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="table-responsive">
                                     <div id="DataTables_Table_7_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                       <div class="row">
                                         <div class="col-sm-12 col-md-6">
@@ -146,22 +187,165 @@
                               </div>
                             </div>
                                 </div> -->
-                            </div>
-                        </div>
-                    </div>
-
-
-
                 </div>
+              </div>
             </div>
-        </section>
-        <!--/ Scroll - vertical, dynamic height table -->
+          </div>
+        </div>
+      </section>
+      <!--/ Scroll - vertical, dynamic height table -->
+
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Update School</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form
+                #updateSchool="ngForm"
+                (ngSubmit)="onSave(updateSchool.value)"
+              >
+                <div class="form">
 
 
-
-
-
+                  <div class="form-body">
+                    <div class="form-group">
+                      <label for="complaintinput0">School ID</label>
+                      <input
+                        type="hidden"
+                        class="form-control round"
+                        placeholder="Enter School Code"
+                        name="schoolId"
+                        [(ngModel)]="updateForm.schoolId"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">School Code</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter School Code"
+                        name="schoolCd"
+                        [(ngModel)]="updateForm.schoolCd"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">School Name</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter School Name"
+                        name="schoolName"
+                        [(ngModel)]="updateForm.schoolName"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Education Board</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Education Board"
+                        name="educationBoard"
+                        [(ngModel)]="updateForm.educationBoard"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Address</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Address"
+                        name="address"
+                        [(ngModel)]="updateForm.address"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Registration Number</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Registration Number"
+                        name="registrationNumber"
+                        [(ngModel)]="updateForm.registrationNumber"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Contact Person Name</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Contact Person"
+                        name="contactPersonName"
+                        [(ngModel)]="updateForm.contactPersonName"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Correspondant Name</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Correspondant Name"
+                        name="correspondantName"
+                        [(ngModel)]="updateForm.correspondantName"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Phone Number</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Phone Number"
+                        name="phoneNumber"
+                        [(ngModel)]="updateForm.phoneNumber"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Email</label>
+                      <input
+                        type="email"
+                        class="form-control round"
+                        placeholder="Enter Email"
+                        name="emailId"
+                        [(ngModel)]="updateForm.emailId"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="issueinput7">Status</label>
+                      <select
+                        id="issueinput7"
+                        placeholder="Status"
+                        name="status"
+                        [(ngModel)]="updateForm.status"
+                        class="form-control"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-placement="top"
+                        data-original-title=""
+                        title=""
+                      >
+                        <option value="printed">ON</option>
+                        <option value="notprinted">OFF</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Save
+                  </button>
                 </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
 

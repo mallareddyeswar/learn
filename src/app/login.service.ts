@@ -18,18 +18,18 @@ export class LoginService {
     return this.httpCli.post(`http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/auth/sendOtp?mobileNumber=${oneTimePassword.mobileNumber}`, oneTimePassword)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(this.numberError)
     );
   }
 
-  handleError(error) {
+  numberError(numberError) {
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
+    if (numberError.error instanceof ErrorEvent) {
       // client-side error
-      errorMessage = `Error: ${error.errormessage}`;
+      errorMessage = `Error: ${numberError.errormessage}`;
     } else {
       // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${numberError.status}\nMessage: ${numberError.message}`;
     }
 
     return throwError(errorMessage);
@@ -37,6 +37,22 @@ export class LoginService {
 
   login(login): Observable<any> {
     // tslint:disable-next-line: max-line-length
-    return this.httpCli.post(`http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/auth/validateOtp?mobileNumber=${login.mobileNumber}&OTP=${+login.OTP}`, login);
+    return this.httpCli.post(`http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/auth/validateOtp?mobileNumber=${login.mobileNumber}&OTP=${+login.OTP}`, login)
+    .pipe(
+      retry(1),
+      catchError(this.otpError)
+    );
+  }
+  otpError(otpError) {
+    let errorMessage = '';
+    if (otpError.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${otpError.errormessage}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${otpError.status}\nMessage: ${otpError.message}`;
+    }
+
+    return throwError(errorMessage);
   }
 }

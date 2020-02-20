@@ -11,6 +11,9 @@ import { ApiService } from './../../../api.service';
 export class AddEmployeeComponent implements OnInit {
  addForm: FormGroup;
   schools: object;
+  employees: any;
+  schoolCd: any = localStorage.getItem('schoolCd');
+
  constructor(
  private formBuilder: FormBuilder,
  private apiService: ApiService
@@ -19,23 +22,35 @@ export class AddEmployeeComponent implements OnInit {
  ngOnInit() {
  this.addForm = this.formBuilder.group({
  employeeName: [' '],
+ admissionNumber: [''],
  qualification: [' '],
  designation: [' '],
- schoolCd: [' '],
+//  schoolCd: [' '],
  dateOfJoining: [' '],
+ dateOfBirth: [''],
  bloodGroup: [''],
  phoneNumber: [''],
+ email: [],
  aadharNbr: [''],
- address: ['']
+ address: [''],
+ idCardStatus: [''],
+ schoolCd : this.schoolCd,
  });
 
- this.apiService.getSchool().subscribe(
-  data => {
-   this.schools = data;
-   console.log( this.schools );
-  },
-  error => console.log(error)
-);
+//  this.apiService.getSchool().subscribe(
+//   data => {
+//    this.schools = data;
+//    console.log( this.schools );
+//   },
+//   error => console.log(error)
+// );
+
+//  const schId = localStorage.getItem('schoolCd');
+//  console.log(schId);
+//  this.apiService.postEmployeeSearch(schId.schoolCd).subscribe(res => {
+//   console.log('employee', res);
+//   this.employees = res;
+// });
 
  }
 
@@ -52,6 +67,7 @@ export class AddEmployeeComponent implements OnInit {
  onSubmit() {
  this.apiService.postEmployee(this.addForm.value).subscribe(res => {
  alert('Employee added successfully');
+ location.reload();
  });
  }
 }

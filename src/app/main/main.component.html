@@ -43,7 +43,7 @@
 
               </ul>
             </li>
-            <li class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Students</span></a>
+            <li *ngIf="ds.showMenu()" class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Students</span></a>
               <ul class="menu-content">
                 <li><a class="menu-item" routerLink="/main/add_student" routerLinkActive="active"><i></i><span data-i18n="Project Summary">Add Student</span></a>
                 </li>
@@ -53,7 +53,7 @@
 
               </ul>
             </li>
-            <li class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Employee</span></a>
+            <li  *ngIf="ds.showMenu()" class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Employee</span></a>
               <ul class="menu-content">
                 <li><a class="menu-item" routerLink="/main/add_employee" routerLinkActive="active"><i></i><span data-i18n="Project Summary">Add Employee </span></a>
                 </li>
@@ -61,6 +61,7 @@
                 </li>
               </ul>
             </li>
+
             <!-- <li class=" nav-item"><a ><i class="la la-briefcase"></i><span class="menu-title" data-i18n="Project"> Admin</span></a>
               <ul class="menu-content">
                 <li><a class="menu-item" routerLink="/main/add_admin" routerLinkActive="active"><i></i><span data-i18n="Project Summary">Add Admin </span></a>

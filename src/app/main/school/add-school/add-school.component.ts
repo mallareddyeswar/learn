@@ -19,23 +19,30 @@ export class AddSchoolComponent implements OnInit {
 
   ngOnInit() {
     this.schoolForm = this.formBuilder.group({
-      schoolCd: [""],
-      schoolName: [""],
-      educationBoard: [""],
-      address: [""],
-    registrationNumber: [""],
-    contactPersonName: [""],
-    correspondantName: [""],
-    phoneNumber: [""],
-    emailId: [""],
-    status: [""],
+
+      schoolCd: [''],
+      schoolName: [''],
+      educationBoard: [''],
+      address: [''],
+    registrationNumber: [''],
+    contactPersonName: [''],
+    correspondantName: [''],
+    phoneNumber: [''],
+    emailId: [''],
+    status: [''],
+    
     });
     }
 
   onSubmit() {
+    // console.log(this.schoolForm.value , 'this is School Form');
     this.apiService.postSchool(this.schoolForm.value).subscribe((res) => {
+    
+      console.log('before component ' + JSON.stringify(res));     
+        
+// alert('School added successfully');
+// location.reload();
 
-    alert('School added successfully');
     });
     }
 

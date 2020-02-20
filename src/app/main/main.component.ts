@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { loadavg } from 'os';
+import { DataService } from './../main/data.service';
 
 
 @Component({
@@ -10,9 +11,10 @@ import { loadavg } from 'os';
 })
 export class MainComponent implements OnInit {
   navigate: any;
-  constructor(private router: Router ) {
+  constructor(private router: Router, public ds: DataService ) {
 
    }
+
 
   ngOnInit() {
 
@@ -22,6 +24,8 @@ export class MainComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['']);
+    localStorage.removeItem('showItems');
+
   }
 
 

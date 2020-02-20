@@ -17,36 +17,32 @@ import { ListEmployeeComponent } from './employee/list-employee/list-employee.co
 import { AdminComponent } from './admin/admin.component';
 import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 import { ListAdminComponent } from './admin/list-admin/list-admin.component';
-
-
+import { TableFilterPipe } from './table-filter.pipe';
 
 @NgModule({
   declarations: [
     MainComponent,
     SchoolComponent,
-     StudentComponent,
-     EmployeeComponent,
-     AddSchoolComponent,
-     ListSchoolComponent,
-      AddStudentComponent,
-      ListStudentComponent,
-       AddEmployeeComponent,
-        ListEmployeeComponent,
-         AdminComponent,
-          AddAdminComponent,
-           ListAdminComponent,
-
-          ],
+    StudentComponent,
+    EmployeeComponent,
+    AddSchoolComponent,
+    ListSchoolComponent,
+    AddStudentComponent,
+    ListStudentComponent,
+    AddEmployeeComponent,
+    ListEmployeeComponent,
+    AdminComponent,
+    AddAdminComponent,
+    ListAdminComponent,
+    TableFilterPipe
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule
-
-
-
-
-  ]
+  ],
+  providers: []
 })
-export class MainModule { }
+export class MainModule {}

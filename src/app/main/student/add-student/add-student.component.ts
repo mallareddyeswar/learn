@@ -15,6 +15,7 @@ export class AddStudentComponent implements OnInit {
   schoolDrop;
   schools: object;
   studentForm: FormGroup;
+  schoolCd: any = localStorage.getItem('schoolCd');
 
 
 fileToUpload: File;
@@ -25,24 +26,34 @@ fileToUpload: File;
       studentName: [''],
       classroom: [''],
       section: [''],
-      schoolCd: this.schoolDrop,
+      // schoolCd: this.schoolDrop,
       bloodGroup: [''],
+      dateOfBirth: [''],
       aadharNbr: [''],
       gender: [''],
       idCardStatus: [''],
       phoneNumber: [''],
       photoLocation: this.fileToUpload,
+      address: [''],
+      rollNbr: [''],
+      parentName: [''],
+      houseName: [''],
+      schoolCd : this.schoolCd,
+
+
 
 
     });
 
-    this.apiService.getSchool().subscribe(
-      data => {
-       this.schools = data;
-       console.log( this.schools );
-      },
-      error => console.log(error)
-    );
+
+
+    // this.apiService.getSchool().subscribe(
+    //   data => {
+    //    this.schools = data;
+    //    console.log( this.schools );
+    //   },
+    //   error => console.log(error)
+    // );
 
   }
 
@@ -74,6 +85,7 @@ handleFileInput(files: FileList) {
  this.apiService.postStudent(this.studentForm.value).subscribe((res) => {
 
     alert('Student added successfully');
+    location.reload();
     });
    }
 

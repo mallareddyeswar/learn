@@ -6,7 +6,7 @@
   <div class="content-overlay"></div>
   <div class="content-wrapper">
 
-    <section id="scroll-dynamic">
+    <!-- <section id="scroll-dynamic">
 
       <div class="col-xl-6 col-lg-6 col-md-12">
 
@@ -15,7 +15,7 @@
 
               <div class="card-body">
                 <div class="row">
-                  <form #form="ngForm" (ngSubmit)="onSearch(form.value)" style="width: 100%;">
+                  <form #form="ngForm"  style="width: 100%;">
                 <div class="col-xl-9 col-lg-9 col-md-9">
 
                   <fieldset class="form-group">
@@ -33,7 +33,7 @@
         </div>
       </div>
 
-    </section>
+    </section> -->
 
     <div class="content-header row">
     </div>
@@ -85,9 +85,34 @@
      </div> -->
    <section>
      <div class="row">
-      <div class="col-md-9">
-        <h1></h1>
+      <div class="col-md-2">
+        <div>
+        <!-- <label>Class</label> -->
+           <select name="DataTables_Table_2_length" aria-controls="DataTables_Table_2" class="custom-select custom-select-sm form-control form-control-sm">
+            <option disabled selected>Select Class</option>
+            <option value="10">I</option>
+          <option value="25">II</option>
+          <option value="50">III</option>
+          <option value="100">IV</option>
+          <option value="100">V</option>
+        </select>
       </div>
+    </div>
+    <div class="col-md-2">
+      <div>
+      <!-- <label>Section</label> -->
+         <select name="DataTables_Table_2_length" aria-controls="DataTables_Table_2" class="custom-select custom-select-sm form-control form-control-sm">
+          <option disabled selected>Select Section</option>
+          <option value="10">A</option>
+        <option value="25">B</option>
+        <option value="50">C</option>
+
+      </select>
+    </div>
+  </div>
+  <div class="col-md-5">
+
+  </div>
      <div class="col-md-3">
     <div class="heading-elements" >
       <button class="btn btn-primary btn-sm" (click)="downloadExcel()">Download Excel</button>&nbsp;&nbsp;
@@ -112,13 +137,13 @@
                   <div class="card">
                       <div class="card-header">
 
-                          <h4 class="card-title">List Of Student</h4>
+                          <h4 class="card-title">List Of Student <span  style="float: right;">School name : {{schoolCd}}</span></h4>
 
 
 
                       </div>
                       <div class="card-content collapse show">
-                          <div class="card-body card-dashboard" style="padding: 0px;">
+                          <div class="card-body card-dashboard table-responsive" style="padding: 0px;max-height: 800px;">
 
                             <table class="table  table-striped table-bordered dynamic-height dataTable" id="DataTables_Table_7">
                               <thead class="thead-dark">
@@ -129,50 +154,94 @@
                                   <th scope="col">Profile</th>
                                   <th scope="col">Class</th>
                                   <th scope="col">Section</th>
-                                  <th scope="col">School Code</th>
+                                  <th scope="col">Roll Number</th>
+                                  <!-- <th scope="col">School Code</th> -->
+
                                   <th scope="col">Phone Number</th>
-                                  <th scope="col">Gender</th>
+
                                   <th scope="col">Blood Group</th>
+                                  <th scope="col">Aadhar number</th>
+                                  <th scope="col">DOB</th>
                                   <th scope="col">Status</th>
+                                  <th scope="col">Edit</th>
+                                  <th scope="col">Delete</th>
 
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr *ngFor="let student of students" role="row" class="odd">
-                                  <td _ngcontent-evy-c2="" class=""><input _ngcontent-evy-c2="" class="check" type="checkbox"></td>
+                                <tr *ngFor="let student of students " role="row" class="odd">
+                                  <td _ngcontent-evy-c2="" class=""><input _ngcontent-evy-c2="" class="check" type="checkbox" ></td>
 
                                         <td class="sorting_1">{{student.studentName}}</td>
                                         <td class="sorting_1">{{student.admissionNumber}}</td>
                                         <td class="">
                                           <div class="media">
-                                            <div class="media-left pr-1"><span class="avatar avatar-sm  rounded-circle"><img src="assets/images/portrait/small/avatar-s-10.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-left pr-1"><span class="avatar avatar-sm  rounded-circle"><img src="assets/images/portrait/small/avatar-s-10.png" alt="avatar"></span></div>
 
                                           </div>
                                         </td>
                                         <td class="sorting_1">{{student.classroom}}</td>
                                         <td class="sorting_1">{{student.section}}</td>
-                                        <td class="sorting_1">{{student.schoolCd}}</td>
+                                        <td class="sorting_1">{{student.rollNbr}}</td>
+                                        <!-- <td class="sorting_1">{{student.schoolCd}}</td> -->
                                         <td class="sorting_1">{{student.phoneNumber}}</td>
-                                        <td class="sorting_1">{{student.gender}}</td>
+
                                         <td class="sorting_1">{{student.bloodGroup}}</td>
+                                        <td class="sorting_1">{{student.aadharNbr}}</td>
+                                        <td class="sorting_1">{{student.dateOfBirth}}</td>
                                         <td>
+
                                           <div class="form-group">
-                                            <label for="issueinput5"></label>
-                                            <select #print (change)="onPrint(print.value,student)"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
-                                              <option value="print">Printed</option>
-                                              <option value="not-print">Not-printed</option>
+
+                                            <select #print (change)="onPrint(print.value,student)" value="{{student.idCardStatus}}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                                              <option disabled selected>Pending</option>
+                                              <option value="printed">Printed</option>
+                                              <option value="not-printed">Not-printed</option>
 
 
                                             </select>
                                           </div>
 
                                         </td>
+                                        <td>
+                                          <a
+                                            class="dropdown-item"
+
+                                            data-toggle="modal"
+                                            data-target="#myModal"
+                                            (click)="editStudent(student)"
+                                            ><i class="la a la-pen"></i>
+
+                                          </a>
+                                        </td>
+                                        <td>
+                                          <a
+                                            class="dropdown-item delete"
+                                            (click)="deleteStundent(student)"
+                                            ><i class="la a la-archive"></i>
+                                          </a>
+                                        </td>
 
                                     </tr>
 
                               </tbody>
                             </table>
+                            <div *ngIf="errorShow">
+                              <div class="container">
+                                <br />
+                                <div
+                                  class="alert alert-warning alert-dismissible fade show"
+                                  role="alert"  >
 
+                                  <span style="text-align: center;">
+                                    No Student Added</span>
+
+                                  </div>
+
+                                </div>
+                                <div style="text-align: center;"><button class="btn btn-primary" routerLink="/main/add_student">Add Student</button></div>
+                                <br>
+                              </div>
 
                               <!-- <div class="table-responsive">
                                   <div id="DataTables_Table_7_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -265,9 +334,174 @@
               </div>
           </div>
       </section>
+
+
       <!--/ Scroll - vertical, dynamic height table -->
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Update School</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form class="form"  #updateStudent="ngForm"
+              (ngSubmit)="onSave(updateStudent.value)">
+                <div class="form-body">
+                  <div class="form-group">
+
+                    <input type="hidden" id="complaintinput0" class="form-control round"  name="studentProfileId" [(ngModel)]="updateForm.studentProfileId">
+                  </div>
+                  <div class="form-group">
+                    <label for="complaintinput2">Student Name *</label>
+                    <input type="text" id="complaintinput2" class="form-control round"  name="studentName" [(ngModel)]="updateForm.studentName">
+                  </div>
+                  <div class="form-group">
+                    <label for="issueinput4">Class *</label>
+                    <select id="issueinput4"  name="classroom" [(ngModel)]="updateForm.classroom" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                      <option disabled selected>Enter Class</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="issueinput5">Section *</label>
+                    <select id="issueinput5"  name="section" [(ngModel)]="updateForm.section" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                      <option disabled selected>Enter Section</option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="complaintinput9">Roll Number</label>
+                    <input type="text" id="complaintinput9" class="form-control round"  name="rollNbr" [(ngModel)]="updateForm.rollNbr">
+                  </div>
+                  <div class="form-group">
+                    <label for="complaintinput15">Admission Number</label>
+                    <input type="text" id="complaintinput15" class="form-control round"  name="admissionNumber" [(ngModel)]="updateForm.admissionNumber">
+                  </div>
+                  <div class="form-group">
+                    <label for="complaintinput1">Parent /Guardian's Name</label>
+                    <input type="text" id="complaintinput1" class="form-control round"  name="parentName" [(ngModel)]="updateForm.parentName">
+                  </div>
+
+
+                  <!-- <fieldset class="form-group">
+                    <div class="form-group">
+                      <label for="exampleFormControlFile1">Enter Profile</label>
+                      <input type="file" class="form-control-file" id="exampleFormControlFile1" formControlName="photoLocation" (change)="handleFileInput($event)">
+                    </div>
+
+                </fieldset> -->
+
+
+
+                <div class="form-group">
+
+                  <input type="hidden" id="complaintinput5" class="form-control round" name="schoolCd"  [(ngModel)]="updateForm.schoolCd">
+                </div>
+<!--
+                  <div class="form-group">
+                    <label for="issueinput5">School Code</label>
+                    <input type="text" value="{{schoolCd}}" />
+                    <select #school (change)="onSelect(school.value)"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+
+                      <option  *ngFor="let school of schools | slice:1 " [value]="school.schoolCd">{{school.schoolCd}}</option>
+
+                    </select>
+                  </div> -->
+
+                  <div class="form-group">
+                    <label for="complaintinput6">Mobile Number</label>
+                    <input type="text" id="complaintinput6" class="form-control round"  name="phoneNumber" [(ngModel)]="updateForm.phoneNumber">
+                  </div>
+                  <div class="form-group">
+                    <label for="issueinput7">House / Group Name</label>
+                    <select id="issueinput7"  name="houseName" [(ngModel)]="updateForm.houseName" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+
+                      <option value="male">house Name 1</option>
+                      <option value="female">house Name 2</option>
+
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="issueinput12">Blood Group</label>
+                    <select id="issueinput12" name="bloodGroup" [(ngModel)]="updateForm.bloodGroup" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                      <option disabled selected>Enter Blood Group</option>
+                      <option value="0+">o+</option>
+                      <option value="A+">A+</option>
+                      <option value="B+">B+</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="complaintinput8"> Aadhar Number</label>
+                    <input type="text" id="complaintinput8" class="form-control round"  name="aadharNbr" [(ngModel)]="updateForm.aadharNbr">
+                  </div>
+                  <div class="form-group">
+                    <label for="complaintinput11"> Date Of Birth</label>
+                    <input type="date" id="complaintinput11" class="form-control round"  name="dateOfBirth" [(ngModel)]="updateForm.dateOfBirth">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="projectinput9">Address</label>
+                    <textarea id="projectinput9" rows="5" class="form-control" name="address"  [(ngModel)]="updateForm.address"></textarea>
+                  </div>
+
+
+
+
+                </div>
+
+                <div class="form-actions">
+
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

@@ -1,7 +1,7 @@
 import { ApiService } from './../../../api.service';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-
+import {ExcelService} from './../../../excel.service';
 
 @Component({
   selector: 'app-list-employee',
@@ -17,9 +17,53 @@ export class ListEmployeeComponent implements OnInit {
 //     {"id":4,"name":"Refined Concrete Chair","description":"Saepe nemo praesentium","price":"760.00","quantity":5899}
 // ];
   employees: any;
-  constructor(private apiService: ApiService , private router: Router) { }
+  errorShow: any;
+  schoolCd: any = localStorage.getItem('schoolCd');
+
+  constructor(private apiService: ApiService , private router: Router, private excelservice: ExcelService ) { }
+
+  updateForm: any = {
+    employeeName: '',
+    admissionNumber: '',
+    qualification: '',
+    designation: '',
+   //  schoolCd: ' ',
+    dateOfJoining: '',
+    dateOfBirth: '',
+    bloodGroup: '',
+    phoneNumber: '',
+    email: ''  ,
+    aadharNbr: '',
+    address: '',
+    idCardStatus: '',
+    schoolCd : this.schoolCd,
+
+
+
+
+
+  };
 
   ngOnInit() {
+
+    const schId = localStorage.getItem('schoolCd');
+    console.log(schId);
+    this.apiService.postEmployeeSearch(schId).subscribe(res => {
+      if (res == null) {
+        this.errorShow = true;
+        //  alert(data + ' No Data User !');
+        // this.ngFlashMessageService.showFlashMessage({
+        //   messages: [`Sorry No Data `],
+        //   type: 'danger',
+
+        //   dismissible: true,
+        // });
+      } else {
+        console.log('employee', res);
+        this.employees = res;
+      }
+
+        });
     // this.apiService.getEmployees().subscribe(
     //   data => {
     //    this.employees = data;
@@ -29,25 +73,55 @@ export class ListEmployeeComponent implements OnInit {
     // );
   }
 
-  onSearch(data) {
-    // console.log(data);
 
-    this.apiService.postEmployeeSearch(data).subscribe(res => {
-      // console.log('employee', res);
-      this.employees = res;
-      },
-      error => console.log(error)
-      );
+  deleteEmployee(id: any): void {
+    // console.log('Delete School' + id.schoolId );
+    if (window.confirm('Are you sure, you want to delete?')) {
+      this.apiService.deleteEmployee(id.employeeProfileId).subscribe(data => {
+        alert('Employee Deleted');
+        location.reload();
+      });
+    }
+  }
 
-    // this.hc.get(`http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/schoolCd/${data}`).subscribe(res =>{
-    //   console.log('employee',res);
-
-    //   alert('Search Done!');
-
-    //   this.router.navigate(['/main/list_employee_fillter']);
-    // });
+  downloadExcel(): void {
+    this.excelservice.exportAsExcelFile(this.employees, 'employees_list');
+  }
 
 
-      }
+
+
+  onSave(employee) {
+
+    this.apiService.updateEmpolyee(employee).subscribe(res => {
+      console.log(res + 'Updated Your Employee');
+      location.reload();
+    });
+  }
+  editStudent(id: any) {
+    this.updateForm = id;
+    console.log(this.updateForm);
+  }
+
+  // onSearch(data) {
+  //   // console.log(data);
+
+  //   this.apiService.postEmployeeSearch(data).subscribe(res => {
+  //     // console.log('employee', res);
+  //     this.employees = res;
+  //     },
+  //     error => console.log(error)
+  //     );
+
+  //   // this.hc.get(`http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/schoolCd/${data}`).subscribe(res =>{
+  //   //   console.log('employee',res);
+
+  //   //   alert('Search Done!');
+
+  //   //   this.router.navigate(['/main/list_employee_fillter']);
+  //   // });
+
+
+  //     }
 
 }
