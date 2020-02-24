@@ -29,19 +29,21 @@ export class AddSchoolComponent implements OnInit {
     correspondantName: [''],
     phoneNumber: [''],
     emailId: [''],
-    status: [''],
-    
-    });
-    }
+
+  });
+}
+
+
 
   onSubmit() {
-    // console.log(this.schoolForm.value , 'this is School Form');
+    console.log('before component', this.schoolForm.value);
     this.apiService.postSchool(this.schoolForm.value).subscribe((res) => {
-    
-      console.log('before component ' + JSON.stringify(res));     
-        
-// alert('School added successfully');
-// location.reload();
+
+
+      console.log('after component', this.schoolForm.value);
+
+      alert('School added successfully');
+      location.reload();
 
     });
     }

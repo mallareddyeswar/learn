@@ -88,7 +88,22 @@ export class ListEmployeeComponent implements OnInit {
     this.excelservice.exportAsExcelFile(this.employees, 'employees_list');
   }
 
+  onPrint(data, student) {
+    console.log(student);
 
+    student.idCardStatus = data;
+    const employeeObj: any[] = [];
+    employeeObj.push(student);
+    console.log(employeeObj);
+    this.apiService.postEmpolyeestatus(employeeObj).subscribe(res => {
+
+    console.log(res[0] + 'updated');
+
+     });
+
+
+
+    }
 
 
   onSave(employee) {

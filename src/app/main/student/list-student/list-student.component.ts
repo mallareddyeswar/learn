@@ -12,15 +12,19 @@ import {ExcelService} from './../../../excel.service';
   styleUrls: ['./list-student.component.css']
 })
 export class ListStudentComponent implements OnInit {
-  students: any;
-  errorShow: any;
-  schoolCd: any = localStorage.getItem('schoolCd');
 
   // tslint:disable-next-line: max-line-length
   constructor(private apiService: ApiService , private router: Router, private excelservice: ExcelService) {
+  }
 
 
-   }
+
+
+   fileToUpload: File;
+   searchText: any;
+  students: any;
+  errorShow: any;
+  schoolCd: any = localStorage.getItem('schoolCd');
 
    updateForm: any = {
     admissionNumber: '',
@@ -34,7 +38,7 @@ export class ListStudentComponent implements OnInit {
     schoolCd : this.schoolCd,
 
     phoneNumber: '',
-    // photoLocation: this.fileToUpload,
+    photoLocation: this.fileToUpload,
     address: '',
     rollNbr: '',
     parentName: '',
@@ -45,6 +49,7 @@ export class ListStudentComponent implements OnInit {
 
 
   };
+
 
   ngOnInit() {
 
@@ -60,7 +65,6 @@ export class ListStudentComponent implements OnInit {
       }
     });
   }
-
 
   onSave(student) {
 
@@ -78,18 +82,25 @@ export class ListStudentComponent implements OnInit {
 onPrint(data, student) {
 console.log(student);
 
-  student.idCardStatus = data;
-  let studentObj:any[]=[];
-  studentObj.push(student);
- console.log(studentObj)
-  this.apiService.postStudentstatus(studentObj).subscribe(res => {
-    
-console.log(res[0] + 'updated')
+student.idCardStatus = data;
+const studentObj: any[] = [];
+studentObj.push(student);
+console.log(studentObj);
+this.apiService.postStudentstatus(studentObj).subscribe(res => {
+
+console.log(res[0] + 'updated');
 
  });
 
 
 
+}
+
+
+
+
+checkBox(data) {
+  console.log(data, 'check box');
 }
 
 
@@ -110,7 +121,23 @@ deleteStundent(id: any): void {
   }
 }
 
+CheckAllOptions() {
+  if (this.students.every(val => val.checked === true)) {
+    this.students.forEach(val => { val.checked = false; });
 
+  } else {
+    this.students.forEach(val => { val.checked = true; });
+    console.log(this.students, ' check box');
+  }
+}
+
+// handleFileInput(files: FileList) {
+
+//   this.fileToUpload = files.item(0);
+//   console.log(this.fileToUpload);
+
+
+// }
 
 
   // onSearch(data) {

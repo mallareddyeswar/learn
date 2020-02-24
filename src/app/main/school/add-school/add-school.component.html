@@ -18,8 +18,8 @@
         <div class="card-body">
 
 
-          <form  [formGroup]="schoolForm" (ngSubmit)="onSubmit()" >
-            <div class="form">
+          <form  class="form"  [formGroup]="schoolForm" (ngSubmit)="onSubmit()" >
+
             <div class="form-body">
               <div class="form-group">
                 <label for="complaintinput1">School Code</label>
@@ -58,26 +58,26 @@
                 <input type="email"  class="form-control round" placeholder="Enter Email" formControlName="emailId">
               </div>
               <!-- <div class="form-group">
-               
+
                 <input type="hidden"  class="form-control round" placeholder="" formControlName="status">
               </div> -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="issueinput7">Status</label>
                 <select id="issueinput7" placeholder="Status" formControlName="status" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
 
                   <option value="null">ON</option>
-              
+
 
                 </select>
-              </div>
-           
+              </div> -->
+
 
 
 </div>
 <button type="submit" class="btn btn-primary">
   Submit
 </button>
-</div>
+
           </form>
         </div>
       </div>

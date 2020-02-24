@@ -54,6 +54,7 @@ export class ListSchoolComponent implements OnInit {
       localStorage.removeItem('foo');
     }
     this.apiService.getSchool().subscribe(data => {
+      // console.log(data , ' getting school data');
       if (data == null) {
         this.errorShow = true;
         //  alert(data + ' No Data User !');

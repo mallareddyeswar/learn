@@ -2,7 +2,7 @@
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-header row">
-    </div>
+    </div><br>
     <div class="content-body"><!-- Zero configuration table -->
 
 <!--
@@ -38,29 +38,10 @@
 
       <div class="row">
         <div class="col-md-2">
-          <div>
-          <!-- <label>Class</label> -->
-             <select name="DataTables_Table_2_length" aria-controls="DataTables_Table_2" class="custom-select custom-select-sm form-control form-control-sm">
-              <option disabled selected>Select Class</option>
-              <option value="10">I</option>
-            <option value="25">II</option>
-            <option value="50">III</option>
-            <option value="100">IV</option>
-            <option value="100">V</option>
-          </select>
-        </div>
+
       </div>
       <div class="col-md-2">
-        <div>
-        <!-- <label>Section</label> -->
-           <select name="DataTables_Table_2_length" aria-controls="DataTables_Table_2" class="custom-select custom-select-sm form-control form-control-sm">
-            <option disabled selected>Select Section</option>
-            <option value="10">A</option>
-          <option value="25">B</option>
-          <option value="50">C</option>
 
-        </select>
-      </div>
     </div>
     <div class="col-md-5">
 
@@ -114,6 +95,7 @@
                                   <th _ngcontent-evy-c2="" aria-label="" class=" " colspan="1" data-col="0" rowspan="1" style="width: 0px;"><div _ngcontent-evy-c2="" class="form-check"><label _ngcontent-evy-c2="" class=" active checkboxkox"><input _ngcontent-evy-c2="" autocomplete="off" checked="" id="selectall" name="selectall" onclick="toggle(this)" type="checkbox"></label></div></th>
                                   <th scope="col">Employee Name</th>
                                   <th scope="col">Admission Number</th>
+                                  <th scope="col">Profile</th>
                                   <th scope="col">Qualification</th>
                                   <th scope="col">Designation</th>
                                   <th scope="col">DOJ</th>
@@ -134,7 +116,12 @@
                                   <td _ngcontent-evy-c2="" class=""><input _ngcontent-evy-c2="" class="check" type="checkbox"></td>
                                   <td class="sorting_1">{{employee.employeeName}}</td>
                                   <td class="sorting_1">{{employee.admissionNumber}}</td>
+                                  <td class="">
+                                    <div class="media">
+                                      <div class="media-left pr-1"><span class="avatar avatar-sm  rounded-circle"><img [src]="employee.photoLocation" alt="avatar"></span></div>
 
+                                    </div>
+                                  </td>
                                   <td >{{employee.qualification}}</td>
                                   <td >{{employee.designation}}</td>
                                   <td >{{employee.dateOfJoining}}</td>
@@ -147,7 +134,7 @@
                                   <td>
                                     <div class="form-group">
 
-                                      <select #print  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                                      <select #print (change)="onPrint(print.value,employee)" value="{{employee.idCardStatus}}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
                                         <option disabled selected>Pending</option>
                                         <option value="printed">Printed</option>
                                         <option value="not-printed">Not-printed</option>
@@ -178,7 +165,11 @@
                               </tr>
 
                               </tbody>
+
                             </table>
+                            <br>
+                            <div style="text-align: right;" *ngIf="!errorShow"><button class="btn btn-primary" routerLink="/main/add_employee">Add Empolyee</button></div>
+                           <br>
                             <div *ngIf="errorShow">
                               <div class="container">
                                 <br />
@@ -311,12 +302,12 @@
             <div class="modal-body">
 
               <form class="form"  #updateEmpolyee="ngForm" (ngSubmit)="onSave(updateEmpolyee.value)">
-             
+
 
 
                 <div class="form-body">
                   <div class="form-group">
-                  
+
                     <input type="text" id="complaintinput1" class="form-control round" placeholder="Enter Employee Name" name="employeeProfileId" [(ngModel)]="updateForm.employeeProfileId">
                   </div>
                   <div class="form-group">

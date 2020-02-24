@@ -33,7 +33,7 @@ fileToUpload: File;
       gender: [''],
       idCardStatus: [''],
       phoneNumber: [''],
-      photoLocation: this.fileToUpload,
+      // photoLocation: this.fileToUpload,
       address: [''],
       rollNbr: [''],
       parentName: [''],
@@ -67,13 +67,13 @@ this.studentForm.patchValue({
 }
 
 
-handleFileInput(files: FileList) {
+// handleFileInput(files: FileList) {
 
-  this.fileToUpload = files.item(0);
-  console.log(this.fileToUpload);
+//   this.fileToUpload = files.item(0);
+//   console.log(this.fileToUpload);
 
 
-}
+// }
 
 
 

@@ -149,15 +149,15 @@ public updateStudent(student: any): Observable<object>  {
 
 
  public postSchool(school: any) {
-  // console.log(school,'school Service Erro');
+  console.log(school, 'service post school');
  // tslint:disable-next-line: max-line-length
- return this.httpClient.post(
+  return this.httpClient.post(
  'http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/SchoolProfile/',
  school,
- 
+
  { headers: this.headers}
  );
- 
+
  }
 
 //  public getEmployees(): Observable<object> {
@@ -184,4 +184,14 @@ public updateStudent(student: any): Observable<object>  {
   { headers: this.headers}
   );
   }
+
+  public postEmpolyeestatus(employee: any) {
+    // tslint:disable-next-line: max-line-length
+    console.log(employee,'service error');
+    return this.httpClient.put(
+    `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/updateList`,
+    employee,
+    { headers: this.headers}
+    );
+    }
 }

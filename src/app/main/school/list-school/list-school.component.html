@@ -208,10 +208,10 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-              <form
-                #updateSchool="ngForm"
-                (ngSubmit)="onSave(updateSchool.value)"
-              >
+              <form  #updateSchool="ngForm" (ngSubmit)="onSave(updateSchool.value)" >
+
+
+
                 <div class="form">
 
 
@@ -221,7 +221,7 @@
                       <input
                         type="hidden"
                         class="form-control round"
-                        placeholder="Enter School Code"
+                        placeholder="Enter School Id"
                         name="schoolId"
                         [(ngModel)]="updateForm.schoolId"
                       />
