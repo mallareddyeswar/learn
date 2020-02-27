@@ -1,0 +1,11 @@
+.info-class {
+  color: #1919ff;
+  padding: 2px;
+  /* border: 1px solid #1919ff; */
+  display: inline-flex;
+  width: 100%;
+}
+.info {
+  padding: 5px;
+  color: #1919ff !important;
+}

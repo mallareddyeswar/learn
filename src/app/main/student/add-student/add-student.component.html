@@ -15,49 +15,102 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body">
-                <form class="form" [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+                <div class="info-class">
+                  <i class="fas fa-info-circle fa-2x"></i
+                  ><span class="info"
+                    >Enter values as they appear on the ID Card</span
+                  >
+                </div>
+                <form
+                  class="form pt-1"
+                  [formGroup]="studentForm"
+                  (ngSubmit)="onSubmit()"
+                >
                   <div class="form-body">
                     <div class="form-group">
                       <label>Student Name *</label>
-                      <input type="text" class="form-control round" placeholder="Enter Student Name"
-                        formControlName="studentName" />
-
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Student Name"
+                        formControlName="studentName"
+                        required
+                      />
                     </div>
 
                     <div class="form-group">
                       <label for="issueinput4">Class *</label>
-                      <select id="issueinput4" placeholder="Enter Class" formControlName="classroom"
-                        class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                        data-original-title="" title="" #classroomVal (change)="onChangeClass(classroomVal.value)">
+                      <select
+                        id="issueinput4"
+                        placeholder="Enter Class"
+                        formControlName="classroom"
+                        class="form-control"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-placement="top"
+                        data-original-title=""
+                        title=""
+                        #classroomVal
+                        (change)="onChangeClass(classroomVal.value)"
+                        required
+                      >
                         <option disabled selected>Enter Class</option>
-                        <option *ngFor="let item of classroom" [value]="item">{{item}}</option>
-
+                        <option *ngFor="let item of classroom" [value]="item">{{
+                          item
+                        }}</option>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="issueinput5">Section *</label>
-                      <select id="issueinput5" placeholder="Enter Section" formControlName="section"
-                        class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                        data-original-title="" title="">
+                      <select
+                        id="issueinput5"
+                        placeholder="Enter Section"
+                        formControlName="section"
+                        required
+                        class="form-control"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-placement="top"
+                        data-original-title=""
+                        title=""
+                      >
                         <option disabled selected>Enter Section</option>
-                        <option *ngFor="let ele of classSection">{{ele}}</option>
-
+                        <option *ngFor="let ele of classSection">{{
+                          ele
+                        }}</option>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="complaintinput9">Roll Number</label>
-                      <input type="text" id="complaintinput9" class="form-control round"
-                        placeholder="Enter Admission Number" formControlName="rollNbr" />
+                      <input
+                        type="text"
+                        id="complaintinput9"
+                        class="form-control round"
+                        placeholder="Enter Admission Number"
+                        formControlName="rollNbr"
+                      />
                     </div>
                     <div class="form-group">
                       <label for="complaintinput1">Admission Number</label>
-                      <input type="text" id="complaintinput1" class="form-control round"
-                        placeholder="Enter Admission Number" formControlName="admissionNumber" />
+                      <input
+                        type="text"
+                        id="complaintinput1"
+                        class="form-control round"
+                        placeholder="Enter Admission Number"
+                        formControlName="admissionNumber"
+                      />
                     </div>
                     <div class="form-group">
-                      <label for="complaintinput1">Parent /Guardian's Name</label>
-                      <input type="text" id="complaintinput1" class="form-control round"
-                        placeholder="Enter Admission Number" formControlName="parentName" />
+                      <label for="complaintinput1"
+                        >Parent /Guardian's Name</label
+                      >
+                      <input
+                        type="text"
+                        id="complaintinput1"
+                        class="form-control round"
+                        placeholder="Enter Admission Number"
+                        formControlName="parentName"
+                      />
                     </div>
 
                     <!--
@@ -70,8 +123,13 @@
             </fieldset> -->
 
                     <div class="form-group">
-                      <input type="hidden" id="complaintinput5" class="form-control round" formControlName="schoolCd"
-                        value="{{ schoolCd }}" />
+                      <input
+                        type="hidden"
+                        id="complaintinput5"
+                        class="form-control round"
+                        formControlName="schoolCd"
+                        value="{{ schoolCd }}"
+                      />
                     </div>
                     <!-- <div class="form-group">
                 <label for="issueinput5">School Code</label>
@@ -85,14 +143,27 @@
 
                     <div class="form-group">
                       <label for="complaintinput6">Mobile Number</label>
-                      <input type="text" id="complaintinput6" class="form-control round"
-                        placeholder="Enter Mobile Number" formControlName="phoneNumber" />
+                      <input
+                        type="text"
+                        id="complaintinput6"
+                        class="form-control round"
+                        placeholder="Enter Mobile Number"
+                        formControlName="phoneNumber"
+                      />
                     </div>
                     <div class="form-group">
                       <label for="issueinput7">House / Group Name</label>
-                      <select id="issueinput7" placeholder="House / Group Name" formControlName="houseName"
-                        class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                        data-original-title="" title="">
+                      <select
+                        id="issueinput7"
+                        placeholder="House / Group Name"
+                        formControlName="houseName"
+                        class="form-control"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-placement="top"
+                        data-original-title=""
+                        title=""
+                      >
                         <option value="male">house Name 1</option>
                         <option value="female">house Name 2</option>
                       </select>
@@ -100,8 +171,16 @@
 
                     <div class="form-group">
                       <label for="issueinput7">Blood Group</label>
-                      <select id="issueinput7" formControlName="bloodGroup" class="form-control" data-toggle="tooltip"
-                        data-trigger="hover" data-placement="top" data-original-title="" title="">
+                      <select
+                        id="issueinput7"
+                        formControlName="bloodGroup"
+                        class="form-control"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-placement="top"
+                        data-original-title=""
+                        title=""
+                      >
                         <option disabled selected>Enter Blood Group</option>
                         <option value="0+">o+</option>
                         <option value="A+">A+</option>
@@ -111,24 +190,48 @@
 
                     <div class="form-group">
                       <label for="complaintinput8"> Aadhar Number</label>
-                      <input type="text" id="complaintinput8" class="form-control round"
-                        placeholder="Enter Aadhar Number" formControlName="aadharNbr" />
+                      <input
+                        type="text"
+                        id="complaintinput8"
+                        class="form-control round"
+                        placeholder="Enter Aadhar Number"
+                        formControlName="aadharNbr"
+                      />
                     </div>
                     <div class="form-group">
                       <label for="complaintinput8"> Date Of Birth</label>
-                      <input type="date" id="complaintinput8" class="form-control round"
-                        placeholder="Enter Date Of Birth" formControlName="dateOfBirth" />
+                      <input
+                        type="date"
+                        id="complaintinput8"
+                        class="form-control round"
+                        placeholder="Enter Date Of Birth"
+                        formControlName="dateOfBirth"
+                      />
                     </div>
 
                     <div class="form-group">
                       <label for="projectinput8">Address</label>
-                      <textarea id="projectinput8" rows="5" class="form-control" formControlName="address"
-                        placeholder="Address"></textarea>
+                      <textarea
+                        id="projectinput8"
+                        rows="5"
+                        class="form-control"
+                        formControlName="address"
+                        placeholder="Address"
+                      ></textarea>
                     </div>
                     <div class="form-group">
                       <label for="issueinput7">Status</label>
-                      <select id="issueinput7" placeholder="Status" formControlName="idCardStatus" class="form-control"
-                        data-toggle="tooltip" data-trigger="hover" data-placement="top" data-original-title="" title="">
+                      <select
+                        id="issueinput7"
+                        placeholder="Status"
+                        formControlName="idCardStatus"
+                        class="form-control"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-placement="top"
+                        data-original-title=""
+                        title=""
+                      >
                         <option value="pending">Pending</option>
                       </select>
                     </div>
