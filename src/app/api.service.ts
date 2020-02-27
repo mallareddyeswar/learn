@@ -19,7 +19,7 @@ export class ApiService {
 
     Authorization: localStorage.getItem("token")
   });
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
   schoolError: any;
   public classDropdown(schoolCd: any) {
     // tslint:disable-next-line: max-line-length
@@ -29,9 +29,39 @@ export class ApiService {
       { headers: this.headers }
     );
   }
+  // ======================================================================================================================================================
+  /*
+  API Call For DESIGNATION Dropdown
+  */
 
+  public designation() {
+    return this.httpClient.get(
+      "http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/getDistinctEmployeeValues?schoolCd=AKSHAR&fieldname=DESIGNATION"
+    );
+  }
+  // ======================================================================================================================================================
+  /*
+  API Call For Blood Groups Dropdown
+  */
+
+  public bloodGroup() {
+    return this.httpClient.get(
+      "http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/getDistinctEmployeeValues?schoolCd=AKSHAR&fieldname=BLOOD_GROUP"
+    );
+  }
+  // ======================================================================================================================================================
+  /*
+  API Call For QUALIFICATIONS Dropdown
+  */
+
+  public qualification() {
+    return this.httpClient.get(
+      "http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/getDistinctEmployeeValues?schoolCd=AKSHAR&fieldname=QUALIFICATION"
+    );
+  }
+  // ======================================================================================================================================================
   public sectionDropdown(schoolCd: any, classroom: any) {
-    console.log(schoolCd, classroom)
+    console.log(schoolCd, classroom);
     // tslint:disable-next-line: max-line-length
     return this.httpClient.get(
       `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/getSections?schoolCd=${schoolCd}&classroom=${classroom}`,
@@ -39,8 +69,6 @@ export class ApiService {
       { headers: this.headers }
     );
   }
-
-
 
   public studentSearchByfield(studentdata: any) {
     // tslint:disable-next-line: max-line-length

@@ -1,4 +1,7 @@
 {
     "git.ignoreLimitWarning": true,
-    "explorer.compactFolders": false
+    "explorer.compactFolders": false,
+    "cSpell.words": [
+        "aadhar"
+    ]
 }
