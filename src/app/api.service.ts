@@ -21,6 +21,10 @@ export class ApiService {
   });
   constructor(private httpClient: HttpClient) {}
   schoolError: any;
+
+
+
+
   public classDropdown(schoolCd: any) {
     // tslint:disable-next-line: max-line-length
     return this.httpClient.get(

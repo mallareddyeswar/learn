@@ -19,7 +19,9 @@ export class ListEmployeeComponent implements OnInit {
   isChecked: any;
   errorShow: any;
   schoolCd: any = localStorage.getItem("schoolCd");
-
+  notiSingleStatus: boolean = false;
+  notiStatus: boolean = false;
+  empDelete: boolean = false;
   constructor(
     private apiService: ApiService,
     private router: Router,
@@ -62,7 +64,13 @@ export class ListEmployeeComponent implements OnInit {
     // console.log('Delete School' + id.schoolId );
     if (window.confirm("Are you sure, you want to delete?")) {
       this.apiService.deleteEmployee(id.employeeProfileId).subscribe(data => {
-        alert("Employee Deleted");
+        if (data) {
+          this.empDelete = true
+          setTimeout(() => {
+            this.empDelete = false
+          }, 4000);
+
+        }
         location.reload();
       });
     }
@@ -80,7 +88,13 @@ export class ListEmployeeComponent implements OnInit {
     employeeObj.push(employee);
     console.log(employeeObj);
     this.apiService.postEmpolyeestatus(employeeObj).subscribe(res => {
-      console.log(res[0] + "updated");
+      if (res) {
+        this.notiSingleStatus = true
+        setTimeout(() => {
+          this.notiSingleStatus = false
+        }, 4000);
+
+      }
     });
   }
   onButton(data, employees) {
@@ -94,7 +108,16 @@ export class ListEmployeeComponent implements OnInit {
         ele.idCardStatus = data
       })
       this.apiService.postEmpolyeestatus(employObj).subscribe(res => {
-        alert(`All Employee Id Card Status Updated Successfully`);
+        if (res) {
+
+          this.notiStatus = true
+          setTimeout(() => {
+            this.notiStatus = false
+          }, 4000);
+
+        }
+        location.reload();
+
       });
     }
   }
@@ -125,23 +148,4 @@ export class ListEmployeeComponent implements OnInit {
     console.log(this.updateForm);
   }
 
-  // onSearch(data) {
-  //   // console.log(data);
-
-  //   this.apiService.postEmployeeSearch(data).subscribe(res => {
-  //     // console.log('employee', res);
-  //     this.employees = res;
-  //     },
-  //     error => console.log(error)
-  //     );
-
-  //   // this.hc.get(`http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/EmployeeProfile/schoolCd/${data}`).subscribe(res =>{
-  //   //   console.log('employee',res);
-
-  //   //   alert('Search Done!');
-
-  //   //   this.router.navigate(['/main/list_employee_fillter']);
-  //   // });
-
-  //     }
 }

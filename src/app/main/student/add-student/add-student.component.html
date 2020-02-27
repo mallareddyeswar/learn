@@ -55,9 +55,10 @@
                         required
                       >
                         <option disabled selected>Enter Class</option>
-                        <option *ngFor="let item of classroom" [value]="item">{{
-                          item
-                        }}</option>
+
+                        <option *ngFor="let cls of editClassrom" [value]="cls">{{cls}}</option>
+
+
                       </select>
                     </div>
                     <div class="form-group">
@@ -75,9 +76,10 @@
                         title=""
                       >
                         <option disabled selected>Enter Section</option>
-                        <option *ngFor="let ele of classSection">{{
-                          ele
-                        }}</option>
+
+                        <option *ngFor="let cs of editClassSection">{{cs}}</option>
+
+
                       </select>
                     </div>
                     <div class="form-group">
@@ -113,14 +115,7 @@
                       />
                     </div>
 
-                    <!--
-              <fieldset class="form-group">
-                <div class="form-group">
-                  <label for="exampleFormControlFile1">Enter Profile</label>
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1" formControlName="photoLocation" (change)="handleFileInput($event)">
-                </div>
 
-            </fieldset> -->
 
                     <div class="form-group">
                       <input
@@ -131,15 +126,7 @@
                         value="{{ schoolCd }}"
                       />
                     </div>
-                    <!-- <div class="form-group">
-                <label for="issueinput5">School Code</label>
-                <input type="text" value="{{schoolCd}}" />
-                <select #school (change)="onSelect(school.value)"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
 
-                  <option  *ngFor="let school of schools | slice:1 " [value]="school.schoolCd">{{school.schoolCd}}</option>
-
-                </select>
-              </div> -->
 
                     <div class="form-group">
                       <label for="complaintinput6">Mobile Number</label>
