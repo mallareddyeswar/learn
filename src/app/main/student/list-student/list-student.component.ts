@@ -13,6 +13,10 @@ import { element } from 'protractor';
 export class ListStudentComponent implements OnInit {
   classroom: any;
   classSection: any;
+  editClass: any;
+  editSection: any;
+  notiSingleStatus: boolean = false;
+  notiStatus: boolean = false;
   // tslint:disable-next-line: max-line-length
   constructor(
     private apiService: ApiService,
@@ -64,12 +68,14 @@ export class ListStudentComponent implements OnInit {
 
     this.classDropdown(schId);
 
+
   }
 
   classDropdown(data) {
     this.apiService.classDropdown(data).subscribe(res => {
       this.classroom = res;
-      console.log(res, 'classDropdown');
+
+
     })
   }
 
@@ -77,11 +83,22 @@ export class ListStudentComponent implements OnInit {
     let schoolCd = this.schoolCd;
     this.apiService.sectionDropdown(schoolCd, data).subscribe(res => {
       this.classSection = res;
+      console.log(this.classSection, "class Drop");
+
     })
-
-
   }
 
+  editClassDropdown() {
+    this.apiService.classDropdown(this.schoolCd).subscribe((result) => {
+      this.editClass = result;
+    });
+  }
+
+  editChangeClass(params) {
+    this.apiService.sectionDropdown(this.schoolCd, params).subscribe(result => {
+      this.editSection = result
+    })
+  }
 
 
 
@@ -110,6 +127,7 @@ export class ListStudentComponent implements OnInit {
   }
   editStudent(id: any) {
     this.updateForm = id;
+    this.editClassDropdown()
 
   }
 
@@ -121,6 +139,14 @@ export class ListStudentComponent implements OnInit {
     studentObj.push(student);
     console.log(studentObj);
     this.apiService.postStudentstatus(studentObj).subscribe(res => {
+      if (res) {
+        this.notiSingleStatus = true
+        setTimeout(() => {
+          this.notiSingleStatus = false
+        }, 4000);
+
+      }
+
 
     });
   }
@@ -155,7 +181,17 @@ export class ListStudentComponent implements OnInit {
         ele.idCardStatus = data
       })
       this.apiService.postStudentstatus(studObj).subscribe(res => {
-        alert(`All Student Id Card Status Updated Successfully`);
+
+
+        if (res) {
+
+          this.notiStatus = true
+          setTimeout(() => {
+            this.notiStatus = false
+          }, 4000);
+
+        }
+        location.reload();
       });
     }
   }
