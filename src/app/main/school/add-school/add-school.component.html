@@ -1,67 +1,114 @@
 <div class="app-content content">
-    <div class="content-overlay"></div>
-    <div class="content-wrapper">
-      <div class="content-header row">
-      </div>
-      <div class="content-body">
-<div class="row">
-  <div class="col-md-2">
-
-  </div>
-  <div class="col-md-6">
-    <div class="card" style="height: 100%;">
-      <div class="card-header">
-        <h4 class="card-title" id="basic-layout-round-controls">Add School</h4>
-
-      </div>
-      <div class="card-content collapse show">
-        <div class="card-body">
-
-
-          <form  class="form"  [formGroup]="schoolForm" (ngSubmit)="onSubmit()" >
-
-            <div class="form-body">
-              <div class="form-group">
-                <label for="complaintinput1">School Code</label>
-                <input type="text"  class="form-control round" placeholder="Enter School Code" formControlName="schoolCd">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput1">School Name</label>
-                <input type="text"  class="form-control round" placeholder="Enter School Name" formControlName="schoolName">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput1">Education Board</label>
-                <input type="text"  class="form-control round" placeholder="Enter Education Board" formControlName="educationBoard">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput1">Address</label>
-                <input type="text"  class="form-control round" placeholder="Enter Address" formControlName="address">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput1">Registration Number</label>
-                <input type="text"  class="form-control round" placeholder="Enter Registration Number" formControlName="registrationNumber">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput1">Contact Person Name</label>
-                <input type="text"  class="form-control round" placeholder="Enter Contact Person" formControlName="contactPersonName">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput1">Correspondant Name</label>
-                <input type="text"  class="form-control round" placeholder="Enter Correspondant Name" formControlName="correspondantName">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput1">Phone Number</label>
-                <input type="text"  class="form-control round" placeholder="Enter Phone Number" formControlName="phoneNumber">
-              </div>
-              <div class="form-group">
-                <label for="complaintinput1">Email</label>
-                <input type="email"  class="form-control round" placeholder="Enter Email" formControlName="emailId">
-              </div>
-              <!-- <div class="form-group">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+          <div class="card" style="height: 100%;">
+            <div class="card-header">
+              <h4 class="card-title" id="basic-layout-round-controls">
+                Add School
+              </h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <form
+                  class="form"
+                  [formGroup]="schoolForm"
+                  (ngSubmit)="onSubmit()"
+                >
+                  <div class="form-body">
+                    <div class="form-group">
+                      <label for="complaintinput1">School Code</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter School Code"
+                        formControlName="schoolCd"
+                        [ngClass]="{
+                          'is-invalid': submitted && schoolCd.errors
+                        }"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">School Name</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter School Name"
+                        formControlName="schoolName"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Education Board</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Education Board"
+                        formControlName="educationBoard"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Address</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Address"
+                        formControlName="address"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Registration Number</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Registration Number"
+                        formControlName="registrationNumber"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Contact Person Name</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Contact Person"
+                        formControlName="contactPersonName"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Correspondant Name</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Correspondant Name"
+                        formControlName="correspondantName"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Phone Number</label>
+                      <input
+                        type="text"
+                        class="form-control round"
+                        placeholder="Enter Phone Number"
+                        formControlName="phoneNumber"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="complaintinput1">Email</label>
+                      <input
+                        type="email"
+                        class="form-control round"
+                        placeholder="Enter Email"
+                        formControlName="emailId"
+                      />
+                    </div>
+                    <!-- <div class="form-group">
 
                 <input type="hidden"  class="form-control round" placeholder="" formControlName="status">
               </div> -->
-              <!-- <div class="form-group">
+                    <!-- <div class="form-group">
                 <label for="issueinput7">Status</label>
                 <select id="issueinput7" placeholder="Status" formControlName="status" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
 
@@ -70,26 +117,16 @@
 
                 </select>
               </div> -->
-
-
-
-</div>
-<button type="submit" class="btn btn-primary">
-  Submit
-</button>
-
-          </form>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
-
-
-
-
-      </div>
-    </div>
-  </div>
-

@@ -33,6 +33,7 @@
     "ngx-notification": "^1.0.5",
     "ngx-toastr": "^12.0.0",
     "popper.js": "^1.16.1",
+    "primeng": "^9.0.0-rc.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "xlsx": "^0.15.5",

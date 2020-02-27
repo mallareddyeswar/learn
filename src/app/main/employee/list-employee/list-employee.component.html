@@ -1,11 +1,12 @@
 <div class="app-content content" style="min-height: 0px !important;">
   <div class="content-overlay"></div>
   <div class="content-wrapper">
-    <div class="content-header row">
-    </div><br>
-    <div class="content-body"><!-- Zero configuration table -->
+    <div class="content-header row"></div>
+    <br />
+    <div class="content-body">
+      <!-- Zero configuration table -->
 
-<!--
+      <!--
       <section id="scroll-dynamic">
 
         <div class="col-xl-6 col-lg-6 col-md-12">
@@ -35,162 +36,219 @@
 
       </section> -->
 
-
       <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4"></div>
         <div class="col-md-2">
-
+          <div class="heading-elements" style="text-align: right;">
+            <br />
+            <button class="btn btn-primary btn-sm" (click)="downloadExcel()">
+              Download Excel
+            </button>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label>Change All Status</label>
+            <select
+              #print
+              (change)="onButton(print.value)"
+              class="form-control"
+              data-toggle="tooltip"
+              data-trigger="hover"
+              data-placement="top"
+              data-original-title=""
+              title=""
+            >
+              <option selected>Pending</option>
+              <option value="printed">Printed</option>
+              <option value="not-printed">Not-printed</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="col-md-2">
-
     </div>
-    <div class="col-md-5">
-
-    </div>
-       <div class="col-md-3">
-      <div class="heading-elements" >
-        <button class="btn btn-primary btn-sm" (click)="downloadExcel()">Download Excel</button>&nbsp;&nbsp;
-  <span class="dropdown">
-          <button id="btnSearchDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-warning btn-sm dropdown-toggle dropdown-menu-right">Change Status</button>
-          <span aria-labelledby="btnSearchDrop1" class="dropdown-menu mt-1 dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(64px, 25px, 0px);">
-              <a href="#" class="dropdown-item"><i class="la la-calendar"></i> Printed</a>
-              <a href="#" class="dropdown-item"><i class="la la-random"></i> Not-Printed </a>
-
-          </span>
-      </span>
-
-  </div>
-  </div>
-
-  </div>
-
-
-
-              </div>
   </div>
 </div>
-
 
 <div class="app-content content">
   <div class="content-overlay"></div>
   <div class="content-wrapper">
-    <div class="content-header row">
-    </div>
-    <div class="content-body"><!-- Zero configuration table -->
-     <!-- Scroll - vertical, dynamic height table -->
+    <div class="content-header row"></div>
+    <div class="content-body">
+      <!-- Zero configuration table -->
+      <!-- Scroll - vertical, dynamic height table -->
       <section id="scroll-dynamic">
-          <div class="row">
-              <div class="col-12">
-                  <div class="card">
-                      <div class="card-header">
-                          <h4 class="card-title">List Of Employee <span  style="float: right;">School name : {{schoolCd}}</span></h4>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">
+                  List Of Employee
+                  <span style="float: right;"
+                    >School name : {{ schoolCd }}</span
+                  >
+                </h4>
+              </div>
+              <div class="card-content collapse show">
+                <div
+                  class="card-body card-dashboard table-responsive"
+                  style="padding: 0px;max-height: 800px;"
+                >
+                  <table
+                    class="table   table-striped table-bordered dynamic-height dataTable"
+                    id="DataTables_Table_7"
+                  >
+                    <thead class="thead-dark">
+                      <tr>
+                        <th
+                          _ngcontent-evy-c2=""
+                          aria-label=""
+                          class=" "
+                          colspan="1"
+                          data-col="0"
+                          rowspan="1"
+                          style="width: 0px;"
+                        >
+                          <div _ngcontent-evy-c2="" class="form-check">
+                            <label
+                              _ngcontent-evy-c2=""
+                              class=" active checkboxkox"
+                              ><input
+                                (click)="CheckAllOptions()"
+                                type="checkbox"
+                            /></label>
+                          </div>
+                        </th>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Admission Number</th>
+                        <th scope="col">Profile</th>
+                        <th scope="col">Qualification</th>
+                        <th scope="col">Designation</th>
+                        <th scope="col">DOJ</th>
+                        <th scope="col">DOB</th>
+                        <th scope="col">Blood Group</th>
 
+                        <th scope="col">Phone</th>
+                        <th scope="col">Aadhar</th>
+                        <th scope="col">Email</th>
+                        <!-- <th scope="col">School Code</th> -->
+                        <th scope="col">Status</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let employee of employees"
+                        role="row"
+                        class="odd"
+                      >
+                        <td _ngcontent-evy-c2="" class="">
+                          <input
+                            type="checkbox"
+                            [(ngModel)]="employee.checked"
+                            [value]="employee.value"
+                          />
+                        </td>
+                        <td class="sorting_1">{{ employee.employeeName }}</td>
+                        <td class="sorting_1">
+                          {{ employee.admissionNumber }}
+                        </td>
+                        <td class="">
+                          <div class="media">
+                            <div class="media-left pr-1">
+                              <span class="avatar avatar-sm  rounded-circle"
+                                ><img
+                                  [src]="employee.photoLocation"
+                                  alt="avatar"
+                              /></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>{{ employee.qualification }}</td>
+                        <td>{{ employee.designation }}</td>
+                        <td>{{ employee.dateOfJoining }}</td>
+                        <td>{{ employee.dateOfBirth }}</td>
+                        <td>{{ employee.bloodGroup }}</td>
+                        <td>{{ employee.phoneNumber }}</td>
+                        <td>{{ employee.aadharNbr }}</td>
+                        <td>{{ employee.email }}</td>
+                        <!-- <td >{{employee.schoolCd}}</td> -->
+                        <td>
+                          <div class="form-group">
+                            <select
+                              #print
+                              (change)="onPrint(print.value, employee)"
+                              value="{{ employee.idCardStatus }}"
+                              class="form-control"
+                              data-toggle="tooltip"
+                              data-trigger="hover"
+                              data-placement="top"
+                              data-original-title=""
+                              title=""
+                            >
+                              <option disabled selected>Pending</option>
+                              <option value="printed">Printed</option>
+                              <option value="not-printed">Not-printed</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <a
+                            class="dropdown-item"
+                            data-toggle="modal"
+                            data-target="#myModal"
+                            (click)="editStudent(employee)"
+                            ><i class="la a la-pen"></i>
+                          </a>
+                        </td>
+                        <td>
+                          <a
+                            class="dropdown-item delete"
+                            (click)="deleteEmployee(employee)"
+                            ><i class="la a la-archive"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br />
+                  <div style="text-align: right;" *ngIf="!errorShow">
+                    <button
+                      class="btn btn-primary"
+                      routerLink="/main/add_employee"
+                    >
+                      Add Empolyee
+                    </button>
+                  </div>
+                  <br />
+                  <div *ngIf="errorShow">
+                    <div class="container">
+                      <br />
+                      <div
+                        class="alert alert-warning alert-dismissible fade show"
+                        role="alert"
+                      >
+                        <span style="text-align: center;">
+                          No Empolyee Added</span
+                        >
                       </div>
-                      <div class="card-content collapse show">
-                          <div class="card-body card-dashboard table-responsive" style="padding: 0px;max-height: 800px;">
+                    </div>
+                    <div style="text-align: center;">
+                      <button
+                        class="btn btn-primary"
+                        routerLink="/main/add_employee"
+                      >
+                        Add Empolyee
+                      </button>
+                    </div>
+                    <br />
+                  </div>
 
-
-                            <table class="table   table-striped table-bordered dynamic-height dataTable" id="DataTables_Table_7">
-                              <thead class="thead-dark">
-                                <tr>
-                                  <th _ngcontent-evy-c2="" aria-label="" class=" " colspan="1" data-col="0" rowspan="1" style="width: 0px;"><div _ngcontent-evy-c2="" class="form-check"><label _ngcontent-evy-c2="" class=" active checkboxkox"><input _ngcontent-evy-c2="" autocomplete="off" checked="" id="selectall" name="selectall" onclick="toggle(this)" type="checkbox"></label></div></th>
-                                  <th scope="col">Employee Name</th>
-                                  <th scope="col">Admission Number</th>
-                                  <th scope="col">Profile</th>
-                                  <th scope="col">Qualification</th>
-                                  <th scope="col">Designation</th>
-                                  <th scope="col">DOJ</th>
-                                  <th scope="col">DOB</th>
-                                  <th scope="col">Blood Group</th>
-
-                                  <th scope="col">Phone</th>
-                                  <th scope="col">Aadhar</th>
-                                  <th scope="col">Email</th>
-                                  <!-- <th scope="col">School Code</th> -->
-                                  <th scope="col">Status</th>
-                                  <th scope="col">Edit</th>
-                                  <th scope="col">Delete</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let employee of employees" role="row" class="odd" >
-                                  <td _ngcontent-evy-c2="" class=""><input _ngcontent-evy-c2="" class="check" type="checkbox"></td>
-                                  <td class="sorting_1">{{employee.employeeName}}</td>
-                                  <td class="sorting_1">{{employee.admissionNumber}}</td>
-                                  <td class="">
-                                    <div class="media">
-                                      <div class="media-left pr-1"><span class="avatar avatar-sm  rounded-circle"><img [src]="employee.photoLocation" alt="avatar"></span></div>
-
-                                    </div>
-                                  </td>
-                                  <td >{{employee.qualification}}</td>
-                                  <td >{{employee.designation}}</td>
-                                  <td >{{employee.dateOfJoining}}</td>
-                                  <td >{{employee.dateOfBirth}}</td>
-                                  <td >{{employee.bloodGroup}}</td>
-                                  <td >{{employee.phoneNumber}}</td>
-                                  <td >{{employee.aadharNbr}}</td>
-                                  <td >{{employee.email}}</td>
-                                  <!-- <td >{{employee.schoolCd}}</td> -->
-                                  <td>
-                                    <div class="form-group">
-
-                                      <select #print (change)="onPrint(print.value,employee)" value="{{employee.idCardStatus}}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
-                                        <option disabled selected>Pending</option>
-                                        <option value="printed">Printed</option>
-                                        <option value="not-printed">Not-printed</option>
-
-
-                                      </select>
-                                    </div>
-
-                                  </td>
-                                  <td>
-                                    <a
-                                    class="dropdown-item"
-
-                                    data-toggle="modal"
-                                    data-target="#myModal"
-                                    (click)="editStudent(employee)"
-                                    ><i class="la a la-pen"></i>
-
-                                  </a>
-                                  </td>
-                                  <td>
-                                    <a
-                                      class="dropdown-item delete"
-                                      (click)="deleteEmployee(employee)"
-                                      ><i class="la a la-archive"></i>
-                                    </a>
-                                  </td>
-                              </tr>
-
-                              </tbody>
-
-                            </table>
-                            <br>
-                            <div style="text-align: right;" *ngIf="!errorShow"><button class="btn btn-primary" routerLink="/main/add_employee">Add Empolyee</button></div>
-                           <br>
-                            <div *ngIf="errorShow">
-                              <div class="container">
-                                <br />
-                                <div
-                                  class="alert alert-warning alert-dismissible fade show"
-                                  role="alert"  >
-
-                                  <span style="text-align: center;">
-                                    No Empolyee Added</span>
-
-                                  </div>
-
-                                </div>
-                                <div style="text-align: center;"><button class="btn btn-primary" routerLink="/main/add_employee">Add Empolyee</button></div>
-                                <br>
-                              </div>
-
-
-
-<!---ihsdofhdsh-->
-<!-- <div class="table-responsive">
+                  <!---ihsdofhdsh-->
+                  <!-- <div class="table-responsive">
   <div id="DataTables_Table_7_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
     <div class="row">
@@ -276,16 +334,14 @@
 </div>
 </div>
 </div> -->
-<!--lkhdnfljjdsnl-->
-                          </div>
-                      </div>
-                  </div>
+                  <!--lkhdnfljjdsnl-->
+                </div>
               </div>
+            </div>
           </div>
+        </div>
       </section>
       <!--/ Scroll - vertical, dynamic height table -->
-
-
 
       <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -300,43 +356,86 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-
-              <form class="form"  #updateEmpolyee="ngForm" (ngSubmit)="onSave(updateEmpolyee.value)">
-
-
-
+              <form
+                class="form"
+                #updateEmpolyee="ngForm"
+                (ngSubmit)="onSave(updateEmpolyee.value)"
+              >
                 <div class="form-body">
                   <div class="form-group">
-
-                    <input type="text" id="complaintinput1" class="form-control round" placeholder="Enter Employee Name" name="employeeProfileId" [(ngModel)]="updateForm.employeeProfileId">
+                    <input
+                      type="text"
+                      id="complaintinput1"
+                      class="form-control round"
+                      placeholder="Enter Employee Name"
+                      name="employeeProfileId"
+                      [(ngModel)]="updateForm.employeeProfileId"
+                    />
                   </div>
                   <div class="form-group">
                     <label for="complaintinput1">Employee Name *</label>
-                    <input type="text" id="complaintinput1" class="form-control round" placeholder="Enter Employee Name" name="employeeName" [(ngModel)]="updateForm.employeeName">
+                    <input
+                      type="text"
+                      id="complaintinput1"
+                      class="form-control round"
+                      placeholder="Enter Employee Name"
+                      name="employeeName"
+                      [(ngModel)]="updateForm.employeeName"
+                    />
                   </div>
                   <div class="form-group">
                     <label for="complaintinput10">Addmission Number</label>
-                    <input type="text" id="complaintinput10" class="form-control round" placeholder="Enter Addmission Number" name="admissionNumber" [(ngModel)]="updateForm.admissionNumber">
+                    <input
+                      type="text"
+                      id="complaintinput10"
+                      class="form-control round"
+                      placeholder="Enter Addmission Number"
+                      name="admissionNumber"
+                      [(ngModel)]="updateForm.admissionNumber"
+                    />
                   </div>
 
                   <div class="form-group">
                     <label for="complaintinput2">Qualification</label>
 
-                    <select id="issueinput2" name="qualification"  [(ngModel)]="updateForm.qualification" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                    <select
+                      id="issueinput2"
+                      name="qualification"
+                      [(ngModel)]="updateForm.qualification"
+                      class="form-control"
+                      data-toggle="tooltip"
+                      data-trigger="hover"
+                      data-placement="top"
+                      data-original-title=""
+                      title=""
+                    >
                       <option disabled selected>Enter Qualification</option>
                       <option value="B-Tech">B-Tech</option>
                       <option value="B.ed">B.ed</option>
-
                     </select>
                   </div>
 
                   <div class="form-group">
                     <label for="complaintinput3">Designation</label>
-                    <input type="text" id="complaintinput3" class="form-control round" placeholder="Enter Designation" name="designation" [(ngModel)]="updateForm.designation">
+                    <input
+                      type="text"
+                      id="complaintinput3"
+                      class="form-control round"
+                      placeholder="Enter Designation"
+                      name="designation"
+                      [(ngModel)]="updateForm.designation"
+                    />
                   </div>
                   <div class="form-group">
                     <label for="complaintinput5">School Code</label>
-                    <input type="text" id="complaintinput5" class="form-control round" name="schoolCd" value="{{schoolCd}}" [(ngModel)]="updateForm.schoolCd">
+                    <input
+                      type="text"
+                      id="complaintinput5"
+                      class="form-control round"
+                      name="schoolCd"
+                      value="{{ schoolCd }}"
+                      [(ngModel)]="updateForm.schoolCd"
+                    />
                   </div>
                   <!-- <div class="form-group">
                     <label for="issueinput5">School Code</label>
@@ -347,28 +446,44 @@
                     </select>
                   </div> -->
 
-
                   <div class="form-group">
                     <label for="timesheetinput6">Date of Joining</label>
                     <div class="position-relative ">
-                      <input type="date" id="timesheetinput6" class="form-control" name="dateOfJoining" [(ngModel)]="updateForm.dateOfJoining">
-
+                      <input
+                        type="date"
+                        id="timesheetinput6"
+                        class="form-control"
+                        name="dateOfJoining"
+                        [(ngModel)]="updateForm.dateOfJoining"
+                      />
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="timesheetinput6">Date of Birth</label>
                     <div class="position-relative ">
-                      <input type="date" id="timesheetinput6" class="form-control" name="dateOfBirth" [(ngModel)]="updateForm.dateOfBirth">
-
+                      <input
+                        type="date"
+                        id="timesheetinput6"
+                        class="form-control"
+                        name="dateOfBirth"
+                        [(ngModel)]="updateForm.dateOfBirth"
+                      />
                     </div>
                   </div>
 
-
-
-
                   <div class="form-group">
                     <label for="issueinput5">Blood Group</label>
-                    <select id="issueinput5" name="bloodGroup" [(ngModel)]="updateForm.bloodGroup" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
+                    <select
+                      id="issueinput5"
+                      name="bloodGroup"
+                      [(ngModel)]="updateForm.bloodGroup"
+                      class="form-control"
+                      data-toggle="tooltip"
+                      data-trigger="hover"
+                      data-placement="top"
+                      data-original-title=""
+                      title=""
+                    >
                       <option disabled>Enter Blood Group</option>
                       <option value="o+">o+</option>
                       <option value="A+">A+</option>
@@ -378,35 +493,74 @@
 
                   <div class="form-group">
                     <label for="complaintinput10"> Phone Number</label>
-                    <input type="text" id="complaintinput10" class="form-control round" placeholder="Enter Phone Number" name="phoneNumber" [(ngModel)]="updateForm.phoneNumber">
+                    <input
+                      type="text"
+                      id="complaintinput10"
+                      class="form-control round"
+                      placeholder="Enter Phone Number"
+                      name="phoneNumber"
+                      [(ngModel)]="updateForm.phoneNumber"
+                    />
                   </div>
                   <div class="form-group">
                     <label for="complaintinput10"> Email</label>
-                    <input type="text" id="complaintinput10" class="form-control round" placeholder="Enter Email" name="email" [(ngModel)]="updateForm.email">
+                    <input
+                      type="text"
+                      id="complaintinput10"
+                      class="form-control round"
+                      placeholder="Enter Email"
+                      name="email"
+                      [(ngModel)]="updateForm.email"
+                    />
                   </div>
                   <div class="form-group">
                     <label for="complaintinput7"> Aadhar Number</label>
-                    <input type="text" id="complaintinput7" class="form-control round" placeholder="Enter Aadhar Number" name="aadharNbr" [(ngModel)]="updateForm.aadharNbr">
+                    <input
+                      type="text"
+                      id="complaintinput7"
+                      class="form-control round"
+                      placeholder="Enter Aadhar Number"
+                      name="aadharNbr"
+                      [(ngModel)]="updateForm.aadharNbr"
+                    />
                   </div>
 
                   <div class="form-group">
                     <label for="complaintinput9"> Address</label>
-                    <textarea id="issueinput9" rows="5" class="form-control" name="address" [(ngModel)]="updateForm.address" placeholder="Enter Address" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title=""></textarea>
+                    <textarea
+                      id="issueinput9"
+                      rows="5"
+                      class="form-control"
+                      name="address"
+                      [(ngModel)]="updateForm.address"
+                      placeholder="Enter Address"
+                      data-toggle="tooltip"
+                      data-trigger="hover"
+                      data-placement="top"
+                      data-original-title=""
+                      title=""
+                    ></textarea>
                   </div>
                   <div class="form-group">
                     <label for="issueinput7">Status</label>
-                    <select id="issueinput7" placeholder="Status" name="idCardStatus" [(ngModel)]="updateForm.idCardStatus" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
-
-
+                    <select
+                      id="issueinput7"
+                      placeholder="Status"
+                      name="idCardStatus"
+                      [(ngModel)]="updateForm.idCardStatus"
+                      class="form-control"
+                      data-toggle="tooltip"
+                      data-trigger="hover"
+                      data-placement="top"
+                      data-original-title=""
+                      title=""
+                    >
                       <option value="pending">Pending</option>
-
                     </select>
                   </div>
-
                 </div>
 
                 <div class="form-actions">
-
                   <button type="submit" class="btn btn-primary">
                     Submit
                   </button>
@@ -416,10 +570,6 @@
           </div>
         </div>
       </div>
-
-
-
-              </div>
+    </div>
   </div>
 </div>
-
