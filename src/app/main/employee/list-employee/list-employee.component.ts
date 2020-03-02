@@ -2,19 +2,14 @@ import { ApiService } from "./../../../api.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ExcelService } from "./../../../excel.service";
-
+declare var $;
 @Component({
   selector: "app-list-employee",
   templateUrl: "./list-employee.component.html",
   styleUrls: ["./list-employee.component.css"]
 })
 export class ListEmployeeComponent implements OnInit {
-  //    employees = [
-  //     {"id":1,"name":"Licensed Frozen Hat","description":"Incidunt et magni","price":"170.00","quantity":56840},
-  //     {"id":2,"name":"Rustic Concrete Chicken","description":"Sint libero mollitia","price":"302.00","quantity":9358},
-  //     {"id":3,"name":"Fantastic Metal Computer","description":"In consequuntur cupiditat","price":"279.00","quantity":90316},
-  //     {"id":4,"name":"Refined Concrete Chair","description":"Saepe nemo praesentium","price":"760.00","quantity":5899}
-  // ];
+
   employees: any;
   isChecked: any;
   errorShow: any;
@@ -25,8 +20,12 @@ export class ListEmployeeComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private excelservice: ExcelService
+    private excelservice: ExcelService,
+    private route: Router,
   ) { }
+  designation: any;
+  bloodGroup: any;
+  qualification: any;
 
   updateForm: any = {
     employeeName: "",
@@ -48,7 +47,23 @@ export class ListEmployeeComponent implements OnInit {
   ngOnInit() {
     const schId = localStorage.getItem("schoolCd");
     console.log(schId);
-    this.apiService.postEmployeeSearch(schId).subscribe(res => {
+    this.getEmployee(schId);
+
+    this.apiService.designation().subscribe(res => {
+      this.designation = res;
+    });
+
+    this.apiService.bloodGroup().subscribe(res => {
+      this.bloodGroup = res;
+    });
+
+    this.apiService.qualification().subscribe(res => {
+      this.qualification = res;
+    });
+
+  }
+  getEmployee(parms) {
+    this.apiService.postEmployeeSearch(parms).subscribe(res => {
       if (res == null) {
         this.errorShow = true;
 
@@ -57,7 +72,6 @@ export class ListEmployeeComponent implements OnInit {
         this.employees = res;
       }
     });
-
   }
 
   deleteEmployee(id: any): void {
@@ -71,7 +85,7 @@ export class ListEmployeeComponent implements OnInit {
           }, 4000);
 
         }
-        location.reload();
+        this.getEmployee(this.schoolCd)
       });
     }
   }
@@ -97,6 +111,14 @@ export class ListEmployeeComponent implements OnInit {
       }
     });
   }
+
+  selectedBoxes: any[] = [];
+
+  selectedCheckbox(data) {
+    this.selectedBoxes.push(data);
+  }
+
+
   onButton(data, employees) {
     if (this.isChecked == true) {
       let employObj = []
@@ -116,9 +138,39 @@ export class ListEmployeeComponent implements OnInit {
           }, 4000);
 
         }
+
+        // this.route.navigate(["list_employee"]);
         location.reload();
+        this.getEmployee(this.schoolCd)
 
       });
+    } else {
+      if (
+        this.selectedBoxes === null ||
+        this.selectedBoxes.length === 0 ||
+        this.selectedBoxes == undefined
+      ) {
+        return `select a checkbox`;
+      } else {
+        let selectedObj: any[] = [];
+        for (let items of this.selectedBoxes) {
+          delete items.checked;
+          items.idCardStatus = data;
+          selectedObj.push(items);
+        }
+
+        this.apiService.postEmpolyeestatus(selectedObj).subscribe(res => {
+          if (res) {
+            this.notiStatus = true;
+            setTimeout(() => {
+              this.notiStatus = false;
+            }, 4000);
+          }
+          location.reload();
+          this.getEmployee(this.schoolCd)
+        });
+      }
+
     }
   }
 
@@ -139,8 +191,10 @@ export class ListEmployeeComponent implements OnInit {
 
   onSave(employee) {
     this.apiService.updateEmpolyee(employee).subscribe(res => {
-      console.log(res + "Updated Your Employee");
-      location.reload();
+      console.log(res, " empolyee update");
+
+      $("#myModal").modal("hide");
+      this.getEmployee(this.schoolCd)
     });
   }
   editStudent(id: any) {

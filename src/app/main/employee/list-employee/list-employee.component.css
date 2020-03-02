@@ -1,1 +1,12 @@
-
+.info-class {
+ color:#0b3960;
+ padding: 2px;
+ /* border: 1px solid #1919ff; */
+ display: inline-flex;
+ width: 100%;
+}
+.info {
+ padding: 5px;
+ color: #0b3960 !important;
+}                                                                                                                                                                                                    
+                                                                                                  

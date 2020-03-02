@@ -15,6 +15,9 @@ export class AddStudentComponent implements OnInit {
     private router: Router,
     private apiService: ApiService
   ) { }
+  studentBlood: any;
+  addStunoti = false;
+  manSuAlert = false
   classroom: any;
   classSection: any;
   schoolDrop;
@@ -45,6 +48,14 @@ export class AddStudentComponent implements OnInit {
       schoolCd: this.schoolCd
     });
 
+    this.apiService.studentBloodGroup().subscribe(res => {
+      this.studentBlood = res;
+    });
+
+
+
+
+
     this.classDropdown(this.schoolCd);
   }
 
@@ -52,7 +63,7 @@ export class AddStudentComponent implements OnInit {
   classDropdown(data) {
     this.apiService.classDropdown(data).subscribe(res => {
       this.classroom = res;
-      console.log(res, 'classDropdown');
+
     })
   }
 
@@ -70,25 +81,29 @@ export class AddStudentComponent implements OnInit {
     this.studentForm.patchValue({
       schoolCd: data
     });
-    // console.log('"School Dropdown"', this.schoolDrop);
+
   }
 
-  // handleFileInput(files: FileList) {
 
-  //   this.fileToUpload = files.item(0);
-  //   console.log(this.fileToUpload);
-
-  // }
 
   onSubmit() {
-    // console.log(this.studentForm.value);
+
     if (this.studentForm.invalid) {
-      alert("Please Enter All (*)Mandatory Fields");
+      this.manSuAlert = true
+      setTimeout(() => {
+        this.manSuAlert = false
+      }, 4000);
       return
     } else {
       this.apiService.postStudent(this.studentForm.value).subscribe(res => {
-        alert("Student added successfully");
-        location.reload();
+        if (res) {
+          this.addStunoti = true
+          setTimeout(() => {
+            this.addStunoti = false
+          }, 4000);
+
+        }
+        this.studentForm.reset();
       });
     }
 

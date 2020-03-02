@@ -31,3 +31,35 @@ html body {
   color: #fff !important;
 }
 
+.noti {
+  width: 40%;
+  position: fixed;
+  z-index: 999;
+  /* float: left; */
+  left: 50%;
+}
+.avatar img {
+  width: 40px;
+ max-width: 170%;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  z-index: 1;
+}
+.info i{
+  padding-right: 10px;
+  color: #0b3960;
+  top: 5px;
+  position: relative;
+}
+.infom p{
+  margin-bottom: 2px;
+  color: #0b3960;
+  font-weight: 600;
+
+}
+.info[_ngcontent-gbs-c2] {
+  padding: 5px;
+  color: #0b3960 !important;
+}
+

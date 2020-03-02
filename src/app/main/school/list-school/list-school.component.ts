@@ -18,10 +18,11 @@ export class ListSchoolComponent implements OnInit {
     private apiService: ApiService,
     private ngFlashMessageService: NgFlashMessageService,
     private router: Router,
-    private data: DataService ,
+    private data: DataService,
   ) {
 
   }
+  deleteSchoolNoti = false;
   errorShow: any;
   updateForm: any = {
 
@@ -42,10 +43,9 @@ export class ListSchoolComponent implements OnInit {
   newStudent: any[];
   message: any;
 
-  isShown = false ; // hidden by default
+  isShown = false; // hidden by default
 
   ngOnInit() {
-
 
     if (!localStorage.getItem('foo')) {
       localStorage.setItem('foo', 'no reload');
@@ -53,32 +53,37 @@ export class ListSchoolComponent implements OnInit {
     } else {
       localStorage.removeItem('foo');
     }
+
+    this.getSchool(this.schools);
+  }
+
+  getSchool(parms) {
+
     this.apiService.getSchool().subscribe(data => {
-      // console.log(data , ' getting school data');
+
+
       if (data == null) {
         this.errorShow = true;
-        //  alert(data + ' No Data User !');
-        // this.ngFlashMessageService.showFlashMessage({
-        //   messages: [`Sorry No Data `],
-        //   type: 'danger',
 
-        //   dismissible: true,
-        // });
       } else {
         this.schools = data;
         console.log(this.schools);
       }
     });
-
-
   }
 
   deleteSchool(id: any): void {
     // console.log('Delete School' + id.schoolId );
     if (window.confirm('Are you sure, you want to delete?')) {
       this.apiService.deleteSchool(id.schoolId).subscribe(data => {
-        alert('School Deleted');
-        location.reload();
+        if (data) {
+          this.deleteSchoolNoti = true
+          setTimeout(() => {
+            this.deleteSchoolNoti = false
+          }, 4000);
+
+        }
+        this.getSchool(this.schools);
       });
     }
   }
@@ -91,7 +96,8 @@ export class ListSchoolComponent implements OnInit {
   onSave(data) {
     // console.log(data, 'console school');
     this.apiService.updateSchool(data).subscribe(res => {
-      location.reload();
+      $("#myModal").modal("hide");
+      this.getSchool(this.schools);
     });
   }
 

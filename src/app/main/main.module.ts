@@ -19,6 +19,7 @@ import { AddAdminComponent } from "./admin/add-admin/add-admin.component";
 import { ListAdminComponent } from "./admin/list-admin/list-admin.component";
 import { TableFilterPipe } from "./table-filter.pipe";
 
+
 @NgModule({
   declarations: [
     MainComponent,
@@ -45,4 +46,4 @@ import { TableFilterPipe } from "./table-filter.pipe";
   ],
   providers: []
 })
-export class MainModule {}
+export class MainModule { }

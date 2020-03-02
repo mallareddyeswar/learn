@@ -31,7 +31,7 @@ import { AuthService } from './auth.service';
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: AuthService
-      }
+    }
   ],
   bootstrap: [AppComponent]
 })

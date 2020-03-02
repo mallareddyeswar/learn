@@ -3,6 +3,19 @@
   <div class="content-wrapper">
     <div class="content-header row"></div>
     <div class="content-body">
+      <br>
+      <div>
+        <div *ngIf="addSchoolnoti" class="alert alert-success noti" role="alert">
+          Successfully Added Employee
+        </div>
+
+
+        <div *ngIf="manAlert " class="alert alert-primary noti" role="alert">
+          Please Enter All (*)Mandatory Fields
+        </div>
+
+      </div>
+      <br>
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-6">
@@ -15,74 +28,43 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body">
-                <div class="info-class">
-                  <i class="fas fa-info-circle fa-2x"></i
-                  ><span class="info"
-                    >Enter values as they appear on the ID Card</span
-                  >
+                <div class="alert alert-success infom" role="alert">
+
+                  <p> <span class="info"> <i class="fas fa-info-circle fa-2x"></i></span> Enter values as they appear on
+                    the
+                    ID
+                    Card</p>
+
                 </div>
-                <form
-                  class="form pt-2"
-                  [formGroup]="addForm"
-                  (ngSubmit)="onSubmit()"
-                >
+                <form class="form pt-2" [formGroup]="addForm" (ngSubmit)="onSubmit()">
                   <div class="form-body">
                     <div class="form-group">
                       <label>Employee Name *</label>
-                      <input
-                        type="text"
-                        class="form-control round"
-                        placeholder="Enter Employee Name"
-                        formControlName="employeeName"
-                        required
-                      />
+                      <input type="text" class="form-control round" placeholder="Enter Employee Name"
+                        formControlName="employeeName" required />
                     </div>
                     <div class="form-group">
                       <label for="complaintinput10">Addmission Number</label>
-                      <input
-                        type="text"
-                        id="complaintinput10"
-                        class="form-control round"
-                        placeholder="Enter Addmission Number"
-                        formControlName="admissionNumber"
-                      />
+                      <input type="text" id="complaintinput10" class="form-control round"
+                        placeholder="Enter Addmission Number" formControlName="admissionNumber" />
                     </div>
 
                     <div class="form-group">
                       <label for="complaintinput2">Qualification</label>
 
-                      <select
-                        id="issueinput2"
-                        formControlName="qualification"
-                        class="form-control"
-                        data-toggle="tooltip"
-                        data-trigger="hover"
-                        data-placement="top"
-                        data-original-title=""
-                        title=""
-                      >
+                      <select id="issueinput2" formControlName="qualification" class="form-control"
+                        data-toggle="tooltip" data-trigger="hover" data-placement="top" data-original-title="" title="">
                         <option disabled selected>Enter Qualification</option>
-                        <option
-                          *ngFor="let qualification of qualification"
-                          [value]="qualification"
-                          >{{ qualification }}</option
-                        >
+                        <option *ngFor="let qualification of qualification" [value]="qualification">{{ qualification }}
+                        </option>
                       </select>
                     </div>
 
                     <div class="form-group">
                       <label for="complaintinput3">Designation</label>
 
-                      <select
-                        id="complaintinput3"
-                        formControlName="designation"
-                        class="form-control"
-                        data-toggle="tooltip"
-                        data-trigger="hover"
-                        data-placement="top"
-                        data-original-title=""
-                        title=""
-                      >
+                      <select id="complaintinput3" formControlName="designation" class="form-control"
+                        data-toggle="tooltip" data-trigger="hover" data-placement="top" data-original-title="" title="">
                         <option default disabled selected>Select</option>
                         <option *ngFor="let des of designation" [value]="des">{{
                           des
@@ -91,116 +73,54 @@
                     </div>
                     <div class="form-group">
                       <!-- <label for="complaintinput5">School Code</label> -->
-                      <input
-                        type="hidden"
-                        id="complaintinput5"
-                        class="form-control round"
-                        formControlName="schoolCd"
-                        value="{{ schoolCd }}"
-                      />
+                      <input type="hidden" id="complaintinput5" class="form-control round" formControlName="schoolCd"
+                        value="{{ schoolCd }}" />
                     </div>
-                    <!-- <div class="form-group">
-              <label for="issueinput5">School Code</label>
-              <select #school (change)="onSelect(school.value)"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"  data-original-title="" title="">
 
-                <option  *ngFor="let school of schools | slice:1" [value]="school.schoolCd">{{school.schoolCd}}</option>
-
-              </select>
-            </div> -->
 
                     <div class="form-group">
                       <label for="timesheetinput6">Date of Joining</label>
                       <div class="position-relative ">
-                        <input
-                          type="date"
-                          id="timesheetinput6"
-                          class="form-control"
-                          formControlName="dateOfJoining"
-                        />
+                        <input type="date" id="timesheetinput6" class="form-control" formControlName="dateOfJoining" />
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="timesheetinput6">Date of Birth</label>
                       <div class="position-relative ">
-                        <input
-                          type="date"
-                          id="timesheetinput6"
-                          class="form-control"
-                          formControlName="dateOfBirth"
-                        />
+                        <input type="date" id="timesheetinput6" class="form-control" formControlName="dateOfBirth" />
                       </div>
                     </div>
 
                     <div class="form-group">
                       <label for="issueinput5">Blood Group</label>
-                      <select
-                        id="issueinput5"
-                        formControlName="bloodGroup"
-                        class="form-control"
-                        data-toggle="tooltip"
-                        data-trigger="hover"
-                        data-placement="top"
-                        data-original-title=""
-                        title=""
-                      >
+                      <select id="issueinput5" formControlName="bloodGroup" class="form-control" data-toggle="tooltip"
+                        data-trigger="hover" data-placement="top" data-original-title="" title="">
                         <option disabled>Enter Blood Group</option>
-                        <option
-                          *ngFor="let group of bloodGroup"
-                          [value]="group"
-                          >{{ group }}</option
-                        >
+                        <option *ngFor="let group of bloodGroup" [value]="group">{{ group }}</option>
                       </select>
                     </div>
 
                     <div class="form-group">
                       <label for="complaintinput10"> Phone Number</label>
-                      <input
-                        type="tel"
-                        id="complaintinput10"
-                        class="form-control round"
-                        placeholder="Enter Phone Number"
-                        formControlName="phoneNumber"
-                        maxlength="10"
-                      />
+                      <input type="tel" id="complaintinput10" class="form-control round"
+                        placeholder="Enter Phone Number" formControlName="phoneNumber" maxlength="10" />
                     </div>
                     <div class="form-group">
                       <label for="complaintinput10"> Email</label>
-                      <input
-                        type="email"
-                        id="complaintinput10"
-                        class="form-control round"
-                        placeholder="Enter Email"
-                        formControlName="email"
-                      />
+                      <input type="email" id="complaintinput10" class="form-control round" placeholder="Enter Email"
+                        formControlName="email" />
                     </div>
                     <div class="form-group">
                       <label for="complaintinput7"> Aadhar Number</label>
-                      <input
-                        type="text"
-                        id="aadhar"
-                        class="form-control round"
-                        placeholder="Enter Aadhar Number"
-                        formControlName="aadharNbr"
-                        pattern="^(\d{12})$"
-                        minlength="12"
-                        maxlength="12"
-                      />
+                      <input type="text" id="aadhar" class="form-control round" placeholder="Enter Aadhar Number"
+                        formControlName="aadharNbr" pattern="^(\d{12})$" minlength="12" maxlength="12" />
                     </div>
 
                     <div class="form-group">
                       <label for="complaintinput9"> Address</label>
-                      <textarea
-                        id="issueinput9"
-                        rows="5"
-                        class="form-control"
-                        formControlName="address"
-                        placeholder="Enter Address"
-                        data-toggle="tooltip"
-                        data-trigger="hover"
-                        data-placement="top"
-                        data-original-title=""
-                        title=""
-                      ></textarea>
+                      <textarea id="issueinput9" rows="5" class="form-control" formControlName="address"
+                        placeholder="Enter Address" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                        data-original-title="" title=""></textarea>
                     </div>
                   </div>
 

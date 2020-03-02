@@ -9,6 +9,8 @@ import { ApiService } from "./../../../api.service";
   styleUrls: ["./add-employee.component.css"]
 })
 export class AddEmployeeComponent implements OnInit {
+  manAlert = false;
+  addSchoolnoti = false;
   addForm: FormGroup;
   schools: object;
   employees: any;
@@ -19,7 +21,7 @@ export class AddEmployeeComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -69,12 +71,23 @@ export class AddEmployeeComponent implements OnInit {
       this.addForm.value["employeeName"] == "" ||
       this.addForm.invalid
     ) {
-      alert("Please Enter All (*)Mandatory Fields");
+      this.manAlert = true
+      setTimeout(() => {
+        this.manAlert = false
+      }, 4000);
       return;
     } else {
       this.apiService.postEmployee(this.addForm.value).subscribe(res => {
-        alert("Employee added successfully");
-        location.reload();
+        if (res) {
+          this.addSchoolnoti = true
+          setTimeout(() => {
+            this.addSchoolnoti = false
+          }, 4000);
+
+        }
+        this.addForm.reset();
+
+
       });
     }
   }

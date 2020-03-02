@@ -17,31 +17,44 @@ export class AddSchoolComponent implements OnInit {
   ) { }
 
   schoolForm: FormGroup;
-
+  addSchoolnoti = false;
+  manAlert = false;
   ngOnInit() {
     this.schoolForm = this.formBuilder.group({
-      schoolCd: [""],
-      schoolName: [""],
+      schoolCd: ["", Validators.required],
+      schoolName: ["", Validators.required],
       educationBoard: [""],
       address: [""],
       registrationNumber: [""],
-      contactPersonName: [""],
+      contactPersonName: ["", Validators.required],
       correspondantName: [""],
-      phoneNumber: [""],
+      phoneNumber: ["", Validators.required],
       emailId: [""]
     });
   }
 
   onSubmit() {
     if (this.schoolForm.invalid) {
+      this.manAlert = true
+      setTimeout(() => {
+        this.manAlert = false
+      }, 4000);
+
       return;
     } else {
       console.log("before component", this.schoolForm.value);
       this.apiService.postSchool(this.schoolForm.value).subscribe(res => {
-        console.log("after component", this.schoolForm.value);
 
-        alert("School added successfully");
-        location.reload();
+        if (res) {
+          this.addSchoolnoti = true
+          setTimeout(() => {
+            this.addSchoolnoti = false
+          }, 4000);
+
+        }
+        this.schoolForm.reset();
+
+
       });
     }
   }

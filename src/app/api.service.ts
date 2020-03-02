@@ -19,7 +19,7 @@ export class ApiService {
 
     Authorization: localStorage.getItem("token")
   });
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
   schoolError: any;
 
 
@@ -47,6 +47,11 @@ export class ApiService {
   /*
   API Call For Blood Groups Dropdown
   */
+  public studentBloodGroup() {
+    return this.httpClient.get(
+      `http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/StudentProfile/getDistinctValues?schoolCd=AKSHAR&fieldname=BLOOD_GROUP`
+    );
+  }
 
   public bloodGroup() {
     return this.httpClient.get(
@@ -120,6 +125,7 @@ export class ApiService {
   }
   // GET School Service
   public getSchool(): Observable<object> {
+
     // tslint:disable-next-line: max-line-length
     return this.httpClient.get(
       "http://test.aksharschoolsolutions.com:8080/SmartCardWS/services/SchoolProfile/",

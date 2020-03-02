@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './../login.service';
 
 import { NgFlashMessageService } from 'ng-flash-messages';
+import { ApiService } from '../api.service';
 
 
 @Component({
@@ -14,12 +15,17 @@ import { NgFlashMessageService } from 'ng-flash-messages';
 export class AuthComponent implements OnInit {
   error: any;
 
-  constructor(private router: Router, private ls: LoginService, private ngFlashMessageService: NgFlashMessageService) {}
+  constructor(private router: Router, private ls: LoginService, private ngFlashMessageService: NgFlashMessageService, ) {
+
+
+  }
   hide = true;
   show = false;
   mobileNumber = { mobileNumber: '' };
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   hideAndShow() {
     return (this.hide = false), (this.show = true);
@@ -34,52 +40,53 @@ export class AuthComponent implements OnInit {
     this.ls.getOTP(data.value).subscribe(res => {
 
 
-this.ngFlashMessageService.showFlashMessage({
-  messages: [`Please check your phone for OTP`],
-  type: 'success',
-
-  dismissible: true,
-});
-this.hideAndShow();
-
-    },
-    numberError => {
-      this.error = numberError;
-
       this.ngFlashMessageService.showFlashMessage({
-        messages: [`This mobile number is not registered with us`],
-        type: 'danger',
+        messages: [`Please check your phone for OTP`],
+        type: 'success',
 
         dismissible: true,
       });
+      this.hideAndShow();
+
+    },
+      numberError => {
+        this.error = numberError;
+
+        this.ngFlashMessageService.showFlashMessage({
+          messages: [`This mobile number is not registered with us`],
+          type: 'danger',
+
+          dismissible: true,
+        });
 
 
-    }
+      }
 
     );
 
   }
 
+
   login(loginData) {
-    setTimeout (() => {
+    setTimeout(() => {
 
-    this.ngFlashMessageService.showFlashMessage({
-      messages: [`Successfully Logged In `],
-      type: 'success',
+      this.ngFlashMessageService.showFlashMessage({
+        messages: [`Successfully Logged In `],
+        type: 'success',
 
-      dismissible: true,
-    });
-  }, 0 );
+        dismissible: true,
+      });
+    }, 0);
 
     this.ls.login(loginData).subscribe(res => {
       console.log(res);
       localStorage.setItem('token', res.authToken);
       this.router.navigate(['main']);
     },
-    otpError => {
-      this.error = otpError;
+      otpError => {
+        this.error = otpError;
 
-      this.ngFlashMessageService.showFlashMessage({
+        this.ngFlashMessageService.showFlashMessage({
           messages: [`Please Verify Your Otp`],
           type: 'danger',
 
@@ -87,8 +94,11 @@ this.hideAndShow();
         });
 
 
-    }
+      }
     );
-    }
   }
+
+
+
+}
 

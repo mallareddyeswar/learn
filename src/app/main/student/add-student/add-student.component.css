@@ -1,5 +1,5 @@
 .info-class {
-  color: #1919ff;
+  color:#0b3960;
   padding: 2px;
   /* border: 1px solid #1919ff; */
   display: inline-flex;
@@ -7,5 +7,5 @@
 }
 .info {
   padding: 5px;
-  color: #1919ff !important;
+  color: #0b3960 !important;
 }
