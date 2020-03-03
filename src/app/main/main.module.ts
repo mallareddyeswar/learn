@@ -18,8 +18,8 @@ import { AdminComponent } from "./admin/admin.component";
 import { AddAdminComponent } from "./admin/add-admin/add-admin.component";
 import { ListAdminComponent } from "./admin/list-admin/list-admin.component";
 import { TableFilterPipe } from "./table-filter.pipe";
-
-
+import { MatButtonModule, MatIconModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     MainComponent,
@@ -42,7 +42,8 @@ import { TableFilterPipe } from "./table-filter.pipe";
     MainRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule, MatIconModule,
   ],
   providers: []
 })

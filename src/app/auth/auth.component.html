@@ -3,99 +3,71 @@
     <div class="notify_message">
 
       <ng-flash-message></ng-flash-message>
-  </div>
-</div>
-<div >
-  <div class="container">
-<div class="row">
-  <div class="col-sm-4"></div>
- <div class="login_img">
-<img src="assets/images/header-logo.png" class="logo_img"/>
- </div>
-
-</div>
-  </div>
-<ng-container *ngIf="hide">
-  <div class="container login_bg">
-    <div class="row m-4">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6 pt-4 login_card">
-        <form #getOTPForm="ngForm" (submit)="getOTP(getOTPForm)">
-          <div class="form-label-group">
-            <input
-              type="text"
-              id="inputEmail"
-              name="mobileNumber"
-              class="form-control"
-              ngModel
-              placeholder="Mobile Number"
-            />
-            <label for="inputEmail">Mobile Number</label>
-          </div>
-          <div>
-            <button
-              class="btn btn-lg btn-primary btn-block text-uppercase"
-              type="submit"
-            >
-              Get OTP
-            </button>
-          </div>
-        </form>
-
-      </div>
-      <div class="col-sm-3"></div>
     </div>
   </div>
-</ng-container>
-<ng-container *ngIf="show">
-  <div class="container login_bg">
-    <div class="row m-4">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6 pt-4 login_card">
-        <form #loginForm="ngForm" (submit)="login(loginForm.value)">
-          <div class="form-label-group">
-            <input
-              type="text"
-              id="inputEmail"
-              name="mobileNumber"
-              class="form-control"
-              placeholder="Mobile Number"
-              [(ngModel)]="mobileNumber.mobileNumber"
-            />
-            <label for="inputEmail">Mobile Number</label>
-          </div>
-
-          <div class="form-label-group">
-            <input
-              type="text"
-              id="inputPassword"
-              class="form-control"
-              placeholder="Otp"
-              name="OTP"
-              ngModel
-            />
-            <label for="inputPassword">OTP</label>
-          </div>
-
-          <button
-            class="btn btn-lg btn-primary btn-block text-uppercase"
-            type="submit"
-          >
-            Login
-          </button>
-        </form>
-
-      </div>
-      <div class="col-sm-3">
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="login_img">
+          <img src="assets/images/header-logo.png" class="logo_img" />
+        </div>
 
       </div>
     </div>
+
+    <ng-container *ngIf="hide">
+      <div class="container login_bg">
+        <div class="row m-4">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6 pt-4 login_card">
+            <form #getOTPForm="ngForm" (submit)="getOTP(getOTPForm)">
+              <div class="form-label-group">
+                <input type="text" id="inputEmail" name="mobileNumber" class="form-control" ngModel
+                  placeholder="Mobile Number" />
+                <label for="inputEmail">Mobile Number</label>
+              </div>
+              <div>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
+                  Get OTP
+                </button>
+              </div>
+            </form>
+
+          </div>
+          <div class="col-sm-3"></div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="show">
+      <div class="container login_bg">
+        <div class="row m-4">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6 pt-4 login_card">
+            <form #loginForm="ngForm" (submit)="login(loginForm.value)">
+              <div class="form-label-group">
+                <input type="text" id="inputEmail" name="mobileNumber" class="form-control" placeholder="Mobile Number"
+                  [(ngModel)]="mobileNumber.mobileNumber" />
+                <label for="inputEmail">Mobile Number</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="text" id="inputPassword" class="form-control" placeholder="Otp" name="OTP" ngModel />
+                <label for="inputPassword">OTP</label>
+              </div>
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
+                Login
+              </button>
+            </form>
+
+          </div>
+          <div class="col-sm-3">
+
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
   </div>
-
-</ng-container>
-
-</div>
-
-
-
-

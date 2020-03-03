@@ -60,15 +60,22 @@ export class ListStudentComponent implements OnInit {
 
   ngOnInit() {
     const schId = localStorage.getItem("schoolCd");
-    console.log(schId);
-
-    this.getSchoolList(schId);
     this.classDropdown(schId);
-
-
     this.apiService.studentBloodGroup().subscribe(res => {
       this.studentBlood = res;
     });
+    let searchObj = {
+      schoolCd: localStorage.getItem("schoolCd"),
+      classroom: localStorage.getItem("classroom"),
+      section: localStorage.getItem("Section"),
+
+    }
+    console.log(searchObj, "searchObj")
+    if ((searchObj.classroom != null || searchObj.classroom != undefined) && (searchObj.section != null || searchObj.section != undefined)) {
+      this.searchRes(searchObj)
+    } else {
+      this.getSchoolList(schId);
+    }
   }
 
   getSchoolList(param) {
@@ -77,7 +84,7 @@ export class ListStudentComponent implements OnInit {
         this.errorShow = true;
       } else {
         this.students = res;
-        console.log(this.students, " student tested ");
+
 
       }
     });
@@ -96,6 +103,8 @@ export class ListStudentComponent implements OnInit {
     let schoolCd = this.schoolCd;
     this.apiService.sectionDropdown(schoolCd, data).subscribe(res => {
       this.classSection = res;
+
+
     });
   }
   editClassDropdown() {
@@ -113,15 +122,25 @@ export class ListStudentComponent implements OnInit {
   searchForm = this.formBuilder.group({
     classroom: [""],
     section: [""],
+
     schoolCd: localStorage.getItem("schoolCd")
+
   });
 
   onSearch() {
     console.log(this.searchForm.value, " Search Result");
+
+    localStorage.setItem('classroom', this.searchForm.value.classroom);
+    localStorage.setItem('Section', this.searchForm.value.section);
+    this.searchRes(this.searchForm.value)
+  }
+
+  searchRes(data) {
     this.apiService
-      .studentSearchByfield(this.searchForm.value)
+      .studentSearchByfield(data)
       .subscribe(res => {
         this.students = res;
+
       });
   }
 

@@ -36,10 +36,13 @@ export class MainComponent implements OnInit {
     setTimeout(function () {
       let token = localStorage.getItem("token")
       localStorage.removeItem('token');
+      localStorage.removeItem('schoolCd');
+      localStorage.removeItem('Section');
+      localStorage.removeItem('classroom');
       location.reload();
       this.router.navigate(['']);
 
-    }, 600000);
+    }, 3600000);
 
   }
 
@@ -58,8 +61,13 @@ export class MainComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['']);
+    localStorage.removeItem('schoolCd');
+    localStorage.removeItem('Section');
+    localStorage.removeItem('classroom');
     localStorage.removeItem('showItems');
+    this.router.navigate(['']);
+
+
 
   }
 
